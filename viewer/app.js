@@ -148,10 +148,11 @@ async function load(path) {
 const dataReady = Promise.all([
   load('sources/catalog.json'), load('data/sites.geojson'), load('data/rivers.geojson'),
   load('data/river_records.json'), load('data/unplaced.json'), load('data/district_records.json'),
+  load('data/reaches.geojson'),
 ]);
 const styleReady = new Promise((ok) => map.once('style.load', ok));
 
-Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unplaced, districts]]) => {
+Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unplaced, districts, reaches]]) => {
   for (const s of cat.sources) catalog[s.id] = s;
 
   // 川: 採取記録のある川の名前に印を付ける
@@ -176,10 +177,46 @@ Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unpla
     else showDetail(p.name || '名称不明の川', [['水系', p.system], ['採取記録', 'なし（未調査）']], ['SRC-011']);
   });
 
-  // 採取地: HTML マーカー（地形の高さに追従する）
+  // 区間: 許可や報告で川筋まで分かっているもの
+  map.addSource('reaches', { type: 'geojson', data: reaches });
+  map.addLayer({
+    id: 'reaches', type: 'line', source: 'reaches',
+    layout: { 'line-join': 'round', 'line-cap': 'round' },
+    paint: { 'line-color': '#e8590c', 'line-width': 6, 'line-opacity': 0.85 },
+  });
+  map.on('mouseenter', 'reaches', () => { map.getCanvas().style.cursor = 'pointer'; });
+  map.on('mouseleave', 'reaches', () => { map.getCanvas().style.cursor = ''; });
+  const reachById = Object.fromEntries(reaches.features.map((f) => [f.properties.id, f]));
+  map.on('click', 'reaches', (e) => { reachDetail(reachById[e.features[0].properties.id].properties); });
+  const rcl = document.getElementById('reaches');
+  for (const f of reaches.features) {
+    const p = f.properties;
+    const li = document.createElement('li');
+    li.innerHTML = `${esc(p.name)}<span class="meta">${esc(p.period)}</span>`;
+    li.onclick = () => {
+      const b = new maplibregl.LngLatBounds();
+      const lines = f.geometry.type === 'LineString' ? [f.geometry.coordinates] : f.geometry.coordinates;
+      lines.forEach((l) => l.forEach((c) => b.extend(c)));
+      map.fitBounds(b, { padding: 80, pitch: 60 });
+      reachDetail(p);
+    };
+    rcl.appendChild(li);
+  }
+
+  // 面の採取地（段丘など）
+  const areas = { type: 'FeatureCollection', features: sites.features.filter((f) => f.geometry.type === 'Polygon') };
+  map.addSource('areas', { type: 'geojson', data: areas });
+  map.addLayer({ id: 'areas', type: 'fill', source: 'areas', paint: { 'fill-color': '#7b2cbf', 'fill-opacity': 0.25 } });
+  map.addLayer({ id: 'areas-line', type: 'line', source: 'areas', paint: { 'line-color': '#7b2cbf', 'line-width': 2, 'line-dasharray': [2, 1] } });
+
+  // 採取地: HTML マーカー（地形の高さに追従する）。面は重心に置く
   const ul = document.getElementById('sites');
   for (const f of sites.features) {
     const p = f.properties;
+    if (f.geometry.type === 'Polygon') {
+      const ring = f.geometry.coordinates[0].slice(0, -1);
+      f.geometry = { type: 'Point', coordinates: [ring.reduce((a, c) => a + c[0], 0) / ring.length, ring.reduce((a, c) => a + c[1], 0) / ring.length] };
+    }
     const el = document.createElement('div');
     el.className = 'marker';
     el.style.background = CONF_COLOR[confKey(p.position_confidence)] || 'var(--lo)';
@@ -237,6 +274,13 @@ Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unpla
   console.error(err);
   showDetail('データを読めませんでした', [['原因', String(err)], ['確認', 'index.html をファイルとして直接開くと読めません。README の手順でローカルサーバーから開いてください。']], []);
 });
+
+function reachDetail(p) {
+  showDetail(p.name, [
+    ['昔の名前', p.historic_names], ['今の川との対応', p.mapping], ['時期', p.period], ['内容', p.summary],
+    ['採取高', p.production], ['区間の分かり方', p.section_known], ['記録の確かさ', p.record_confidence],
+  ], p.sources);
+}
 
 function showRiver(r) {
   showDetail(r.name, [['時期', r.period], ['内容', r.summary], ['たまりやすい場所', r.hint], ['記録の確かさ', r.record_confidence], ['区間', '不明（川全体に色を付けている）']], r.sources);

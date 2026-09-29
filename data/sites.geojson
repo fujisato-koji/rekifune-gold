@@ -4,7 +4,13 @@
   "features": [
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [143.4337, 42.4768] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          143.4337,
+          42.4768
+        ]
+      },
       "properties": {
         "id": "GS-001",
         "name": "アイボシマ川の河口（段丘崖の裾の礫）",
@@ -15,12 +21,26 @@
         "position": "アイホシマ川（国土数値情報の表記）の河口に置いた。ライマンとマンローはどちらも「Ayoshuma / Ayoboshuma の小川の河口」と書き、当縁と歴舟のほぼ中間（それぞれから約1里）という距離も合う。榎本の地点は1874年にはすでに風と潮で消えていた。",
         "position_confidence": "中（河口であることは確か。数百 m の幅がある）",
         "record_confidence": "高（1874年の現地調査の報告）",
-        "sources": ["SRC-015", "SRC-016", "SRC-001", "SRC-003", "SRC-004", "SRC-005", "SRC-011"]
+        "sources": [
+          "SRC-015",
+          "SRC-016",
+          "SRC-001",
+          "SRC-003",
+          "SRC-004",
+          "SRC-005",
+          "SRC-011"
+        ]
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [143.46659, 42.51281] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          143.46659,
+          42.51281
+        ]
+      },
       "properties": {
         "id": "GS-003",
         "name": "当縁川の河口（河岸の岩盤露頭）",
@@ -31,12 +51,21 @@
         "position": "当縁川（国土数値情報）の河口に置いた。河口の位置は明治以降に変わっている可能性がある。",
         "position_confidence": "中",
         "record_confidence": "高（1874年の現地調査の報告）",
-        "sources": ["SRC-015", "SRC-011"]
+        "sources": [
+          "SRC-015",
+          "SRC-011"
+        ]
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [143.40345, 42.44729] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          143.40345,
+          42.44729
+        ]
+      },
       "properties": {
         "id": "GS-004",
         "name": "歴舟川の河口から約0.8 km 上流（平野と石川の試掘）",
@@ -47,12 +76,21 @@
         "position": "今の歴舟川の河口（国土数値情報）から川に沿って 0.8 km 上った点に置いた。1874年の河口の位置や流路は今と違う可能性が高い。",
         "position_confidence": "低",
         "record_confidence": "中（1874年の報告の中の伝聞）",
-        "sources": ["SRC-015", "SRC-011"]
+        "sources": [
+          "SRC-015",
+          "SRC-011"
+        ]
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [143.423, 42.4625] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          143.423,
+          42.4625
+        ]
+      },
       "properties": {
         "id": "GS-005",
         "name": "歴舟とアイボシマの間の段丘（函館商人の採掘と導水溝）",
@@ -63,12 +101,20 @@
         "position": "歴舟川の河口とアイホシマ川の河口の中間に仮に置いた。実際は二つの河口の間の海岸段丘のどこか。導水溝は、旧版地形図、1940年代の米軍の空中写真、航空レーザーの陰影図で遺構として探せるかもしれない。",
         "position_confidence": "低（約 3.5 km の区間のどこか）",
         "record_confidence": "高（1874年の現地調査の報告。溝の用途はマンローの推定）",
-        "sources": ["SRC-015"]
+        "sources": [
+          "SRC-015"
+        ]
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [143.18608, 42.54031] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          143.18608,
+          42.54031
+        ]
+      },
       "properties": {
         "id": "GS-002",
         "name": "尾田（明治のゴールドラッシュの集落）",
@@ -78,7 +124,105 @@
         "position": "集落の代表点として尾田地域コミュニティセンターの位置に置いた。掘った川の区間は資料に書かれていない。",
         "position_confidence": "中（集落の位置）。採取区間は不明",
         "record_confidence": "中（町の資料。人数は資料により200人と1000人超で食い違う）",
-        "sources": ["SRC-002", "SRC-004", "SRC-008", "SRC-012"]
+        "sources": [
+          "SRC-002",
+          "SRC-004",
+          "SRC-008",
+          "SRC-012"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              143.09,
+              42.5585
+            ],
+            [
+              143.128,
+              42.5605
+            ],
+            [
+              143.128,
+              42.57
+            ],
+            [
+              143.09,
+              42.569
+            ],
+            [
+              143.09,
+              42.5585
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "GS-006",
+        "name": "神威金鉱の最上位段丘（1950年時点で未試掘）",
+        "kind": "未試掘の段丘",
+        "period": "1950年の視察時点",
+        "summary": "日方川（今の歴舟川本流）の北岸にだけ段丘が発達する。最上位の第1段丘は幅1 km、長さ3 km 余りで、この地帯の大部分を占め、高さは20 m 余り。段丘堆積物は砂礫が主で厚さ1〜2 m、坂下部落の付近の最も厚い所で数 m。報告は「最上位段丘及び蕨原野は、未だ試堀されたことがないため鉱床の存否は全く不明である」と書く。",
+        "result": "未試掘。同じ段丘地帯の下位の段丘（坂下、滝の沢）では 1立坪あたり約3 g（報告の見込みは3〜10 g、0.5〜1.7 g/m³）。",
+        "position": "報告の記述（合流点から東へ5 km、北岸、幅1 km、長さ3 km 余り）を、陰影起伏図と航空写真で北岸の平らな畑地に当てはめて描いた。境界は目で引いたもので、段丘の段の区別はしていない。今は畑と牧草地で、私有地の可能性が高い。",
+        "position_confidence": "低（範囲は目で当てはめたもの）",
+        "record_confidence": "高（地質調査所の報告）",
+        "sources": [
+          "SRC-036",
+          "SRC-013"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          143.1213,
+          42.569
+        ]
+      },
+      "properties": {
+        "id": "GS-007",
+        "name": "坂下部落（鈴木正作宅裏の試掘地）",
+        "kind": "試掘地",
+        "period": "1950年（視察時の試掘）",
+        "summary": "表土の数十 cm 下に厚さ1 m の砂礫層、その下に厚さ1 m 以上の含金砂礫層。排水が難しく岩盤までは掘れなかった。金粒は純度800前後、多くは 0.5×0.5×0.1 mm の扁平な粒で、一つだけ 3×5×0.2 mm の板状のものがあった。",
+        "result": "1立坪あたり約3 g（約0.5 g/m³）。岩盤の直上は試せていないので最低限の桁とされる。",
+        "position": "報告の道順（尾田から北西へ6 km、さらに西へ2 km）と、段丘の北東にある建物のまとまりから、坂下部落の位置を推定して置いた。鈴木正作宅の位置は分からない。",
+        "position_confidence": "低",
+        "record_confidence": "高（地質調査所の報告）",
+        "sources": [
+          "SRC-036"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          143.079,
+          42.5535
+        ]
+      },
+      "properties": {
+        "id": "GS-008",
+        "name": "蕨原野（第2段丘、1950年時点で未試掘）",
+        "kind": "未試掘の段丘",
+        "period": "1950年の視察時点",
+        "summary": "第2段丘は合流点の付近で蕨原野と呼ばれ、幅100〜200 m、高さ10 m 前後。最上位段丘とともに「未だ試堀されたことがない」。",
+        "result": "未試掘。",
+        "position": "合流点（今のポンヤオロヌップ川が本流に入る点）の北東に仮に置いた。範囲は分からない。",
+        "position_confidence": "低",
+        "record_confidence": "高（地質調査所の報告）",
+        "sources": [
+          "SRC-036"
+        ]
       }
     }
   ]
