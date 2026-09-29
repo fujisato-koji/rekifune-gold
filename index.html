@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>歴舟川 砂金地図</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="viewer/style.css">
+</head>
+<body>
+  <div id="map"></div>
+  <aside id="panel">
+    <header>
+      <h1>歴舟川 砂金地図</h1>
+      <p class="sub">昔の採取地の記録を地形の上に置く</p>
+    </header>
+    <section>
+      <h2>背景</h2>
+      <div class="seg" id="basemap">
+        <button data-k="photo" class="on">写真</button>
+        <button data-k="std">標準</button>
+        <button data-k="pale">淡色</button>
+      </div>
+      <label class="row">高さの強調 <input id="exag" type="range" min="1" max="3" step="0.1" value="1.5"><span id="exagv">1.5</span></label>
+    </section>
+    <section>
+      <h2>採取地</h2>
+      <ul id="sites"></ul>
+    </section>
+    <section>
+      <h2>川ごとの記録</h2>
+      <ul id="rivers"></ul>
+    </section>
+    <section>
+      <h2>未配置の記録</h2>
+      <ul id="unplaced"></ul>
+    </section>
+    <section class="legend">
+      <h2>凡例</h2>
+      <div><span class="dot" style="background:var(--hi)"></span>位置の確かさ 高</div>
+      <div><span class="dot" style="background:var(--mid)"></span>中</div>
+      <div><span class="dot" style="background:var(--lo)"></span>低</div>
+      <div><span class="line" style="background:var(--gold)"></span>採取記録のある川</div>
+      <div><span class="line" style="background:var(--river)"></span>その他の川（国土数値情報）</div>
+    </section>
+    <footer>
+      地形と背景: <a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener">地理院タイル</a>。
+      川: 国土数値情報（河川データ）。
+      出典の一覧は sources/catalog.json。
+    </footer>
+  </aside>
+  <div id="detail" hidden></div>
+  <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="viewer/app.js"></script>
+</body>
+</html>

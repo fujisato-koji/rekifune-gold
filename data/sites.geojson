@@ -1,0 +1,36 @@
+{
+  "type": "FeatureCollection",
+  "_note": "昔の砂金採取の記録を地図に置いたもの。position は座標の決め方、position_confidence は座標の確かさ、record_confidence は記録そのものの確かさ（一次資料か、町の資料か、二次資料か）。",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [143.4337, 42.4768] },
+      "properties": {
+        "id": "GS-001",
+        "name": "アイボシマの海岸",
+        "kind": "採取地",
+        "period": "寛永12年（1635年）から約50年。明治9年（1876年）9月に再開",
+        "summary": "大樹町で最初の砂金採取地。海岸の砂から採った。松前藩と幕府の財政を潤したとされる。",
+        "position": "アイホシマ川（国土数値情報の表記）の河口に置いた。資料は「アイボシマ付近の海岸」とだけ書いており、海岸のどの範囲かは分からない。",
+        "position_confidence": "低",
+        "record_confidence": "中（町の資料。1635年は松前藩の記録によるとされるが原典未確認）",
+        "sources": ["SRC-001", "SRC-003", "SRC-004", "SRC-005", "SRC-011"]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [143.18608, 42.54031] },
+      "properties": {
+        "id": "GS-002",
+        "name": "尾田（明治のゴールドラッシュの集落）",
+        "kind": "集落",
+        "period": "明治27年頃から大正。明治32〜33年頃が最盛期",
+        "summary": "砂金掘師が200人集まり、ピーク時は1000人を超えたとも言われる。1つの塊が15〜20匁のものも採れた。カナテコと揺り板による流し掘り。",
+        "position": "集落の代表点として尾田地域コミュニティセンターの位置に置いた。掘った川の区間は資料に書かれていない。",
+        "position_confidence": "中（集落の位置）。採取区間は不明",
+        "record_confidence": "中（町の資料。人数は資料により200人と1000人超で食い違う）",
+        "sources": ["SRC-002", "SRC-004", "SRC-008", "SRC-012"]
+      }
+    }
+  ]
+}

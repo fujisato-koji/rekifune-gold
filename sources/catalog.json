@@ -1,0 +1,127 @@
+{
+  "_note": "出典の目録。data/ の各記録は sources 欄でここの id を指す。retrieved は取得日。",
+  "sources": [
+    {
+      "id": "SRC-001",
+      "title": "砂金掘り体験",
+      "publisher": "大樹町 商工観光係",
+      "url": "https://www.town.taiki.hokkaido.jp/soshiki/kikakushokoka/3/794.html",
+      "retrieved": "2026-09-29",
+      "kind": "町の公式ページ",
+      "license": "大樹町ホームページの利用条件に従う"
+    },
+    {
+      "id": "SRC-002",
+      "title": "文化",
+      "publisher": "大樹町",
+      "url": "https://www.town.taiki.hokkaido.jp/soshiki/kikakushokoka/2/3/2/492.html",
+      "retrieved": "2026-09-29",
+      "kind": "町の公式ページ",
+      "license": "大樹町ホームページの利用条件に従う"
+    },
+    {
+      "id": "SRC-003",
+      "title": "まちのあゆみ",
+      "publisher": "大樹町",
+      "url": "https://www.town.taiki.hokkaido.jp/soshiki/kikakushokoka/2/3/1/493.html",
+      "retrieved": "2026-09-29",
+      "kind": "町の公式ページ（年表）",
+      "license": "大樹町ホームページの利用条件に従う"
+    },
+    {
+      "id": "SRC-004",
+      "title": "大樹町過疎地域持続的発展市町村計画（令和8年3月改訂）",
+      "publisher": "大樹町",
+      "url": "https://www.town.taiki.hokkaido.jp/material/files/group/3/kaso_plan.pdf",
+      "retrieved": "2026-09-28",
+      "kind": "町の計画",
+      "license": "大樹町ホームページの利用条件に従う",
+      "local": "taiki-core DOC-0043（sources/town/text/02_総合戦略と地方創生/kaso_plan.txt）"
+    },
+    {
+      "id": "SRC-005",
+      "title": "団体向け 調査結果（総合計画策定の聞き取り）",
+      "publisher": "大樹町",
+      "url": "https://www.town.taiki.hokkaido.jp/material/files/group/3/sougoukeikaku_dantai_kekka.pdf",
+      "retrieved": "2026-09-28",
+      "kind": "町の調査結果（尾田砂金堀友の会の回答を含む）",
+      "license": "大樹町ホームページの利用条件に従う",
+      "local": "taiki-core DOC-0036（424行、1340〜1373行）"
+    },
+    {
+      "id": "SRC-006",
+      "title": "大樹町地域防災計画 p47-103（第3章 予防計画、別表2 急傾斜地崩壊危険箇所）",
+      "publisher": "大樹町",
+      "url": "https://www.town.taiki.hokkaido.jp/material/files/group/2/p47-103.pdf",
+      "retrieved": "2026-09-28",
+      "kind": "町の計画",
+      "license": "大樹町ホームページの利用条件に従う",
+      "local": "taiki-core DOC-0094（1082行、1099行）"
+    },
+    {
+      "id": "SRC-007",
+      "title": "十勝の旅 11（砂金）",
+      "publisher": "北海道ビューポイント",
+      "url": "https://hokkaido-viewpoint.com/%E5%8C%97%E3%81%AE%E7%BE%8E%E8%A1%93%E9%A4%A8/%E5%8D%81%E5%8B%9D%E3%81%AE%E6%97%85%E3%80%8011%E3%80%80%E7%A0%82%E9%87%91/",
+      "retrieved": "2026-09-29",
+      "kind": "二次資料（個人・民間サイト）",
+      "license": "引用のみ"
+    },
+    {
+      "id": "SRC-008",
+      "title": "歴船川の砂金史（明治以降）",
+      "publisher": "砂金掘り日記（個人ブログ）",
+      "url": "https://garimpo.hatenablog.com/entry/20110131",
+      "retrieved": "2026-09-29",
+      "kind": "二次資料（個人ブログ。引用元 rekitan.namara-hokkaido.net は消滅）",
+      "license": "引用のみ"
+    },
+    {
+      "id": "SRC-009",
+      "title": "砂金掘りができる清流・歴舟川とハマナス咲く北の原生花園へドライブ",
+      "publisher": "GAZOO（トヨタ）",
+      "url": "https://gazoo.com/drive/mura/20/05/27/",
+      "retrieved": "2026-09-29",
+      "kind": "二次資料（民間サイト）",
+      "license": "引用のみ"
+    },
+    {
+      "id": "SRC-010",
+      "title": "北海道砂金案内（蓑田政徳 編、開拓社、明治33年5月）",
+      "publisher": "国立国会図書館デジタルコレクション",
+      "url": "https://dl.ndl.go.jp/pid/847465",
+      "retrieved": "2026-09-29",
+      "kind": "一次資料（未読。第二章「砂金採取区域」14ページ〜、10コマ目付近）",
+      "license": "インターネット公開（著作権法第67条第1項の裁定、2019-01-25）"
+    },
+    {
+      "id": "SRC-011",
+      "title": "国土数値情報 河川データ W05-09（北海道）",
+      "publisher": "国土交通省",
+      "url": "https://nlftp.mlit.go.jp/ksj/gml/data/W05/W05-09/W05-09_01_GML.zip",
+      "retrieved": "2026-09-28",
+      "kind": "地理データ（taiki-core で町域に切り出したものを tools/build_rivers.py で水系ごとに抽出）",
+      "license": "国土数値情報 利用規約（出典明記）",
+      "local": "taiki-core DOC（W05）geometry/external/W05_taiki.geojson"
+    },
+    {
+      "id": "SRC-012",
+      "title": "国土数値情報 市町村役場等及び公的集会施設データ P05-22",
+      "publisher": "国土交通省",
+      "url": "https://nlftp.mlit.go.jp/ksj/gml/data/P05/P05-22/P05-22_01_GML.zip",
+      "retrieved": "2026-09-28",
+      "kind": "地理データ（尾田地域コミュニティセンターの位置を集落の代表点に使う）",
+      "license": "国土数値情報 利用規約（出典明記）",
+      "local": "taiki-core DOC-1206"
+    },
+    {
+      "id": "SRC-013",
+      "title": "地理院タイル（標高 dem_png、航空写真 seamlessphoto、標準地図 std、淡色地図 pale）",
+      "publisher": "国土地理院",
+      "url": "https://maps.gsi.go.jp/development/ichiran.html",
+      "retrieved": "2026-09-29",
+      "kind": "ビューワの地形と背景",
+      "license": "国土地理院コンテンツ利用規約（出典明記）"
+    }
+  ]
+}
