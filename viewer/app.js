@@ -140,11 +140,11 @@ async function load(path) {
 // データは起動と同時に読み始め、スタイルの準備ができたら重ねる（'load' はタイルが揃うまで待つので遅い）
 const dataReady = Promise.all([
   load('sources/catalog.json'), load('data/sites.geojson'), load('data/rivers.geojson'),
-  load('data/river_records.json'), load('data/unplaced.json'),
+  load('data/river_records.json'), load('data/unplaced.json'), load('data/district_records.json'),
 ]);
 const styleReady = new Promise((ok) => map.once('style.load', ok));
 
-Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unplaced]]) => {
+Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unplaced, districts]]) => {
   for (const s of cat.sources) catalog[s.id] = s;
 
   // 川: 採取記録のある川の名前に印を付ける
@@ -204,6 +204,18 @@ Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unpla
       showRiver(r);
     };
     rl.appendChild(li);
+  }
+
+  // 郡ごとの記録
+  const dl = document.getElementById('districts');
+  for (const r of districts.records) {
+    const li = document.createElement('li');
+    li.innerHTML = `${esc(r.name)}<span class="meta">${esc(r.area)}</span>`;
+    li.onclick = () => showDetail(r.name, [
+      ['範囲', r.area], ['時点', r.period], ['内容', r.summary], ['読み方', r.meaning],
+      ['記録の確かさ', r.record_confidence], ['読み取りの記録', r.note],
+    ], r.sources);
+    dl.appendChild(li);
   }
 
   // 未配置
