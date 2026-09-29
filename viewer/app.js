@@ -298,6 +298,12 @@ document.querySelectorAll('.seg button[data-k]').forEach((b) => {
   };
 });
 
+// ?at=経度,緯度,ズーム,傾き で最初の視点を選べる
+const qAt = (new URLSearchParams(location.search).get('at') || '').split(',').map(Number);
+if (qAt.length >= 2 && qAt.every((v) => !Number.isNaN(v))) {
+  map.jumpTo({ center: [qAt[0], qAt[1]], zoom: qAt[2] || 13.5, pitch: Number.isNaN(qAt[3]) || qAt[3] === undefined ? map.getPitch() : qAt[3] });
+}
+
 // ?base=old60 のように URL で背景を選べる
 const qBase = new URLSearchParams(location.search).get('base');
 if (BASEMAPS.includes(qBase)) {

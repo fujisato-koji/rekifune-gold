@@ -346,7 +346,7 @@
       "retrieved": "2026-09-29",
       "kind": "一次資料（尾田の神威金鉱。日方川とポンヤオロマップ川の合流点から東5 km、段丘、試掘の含金量、未試掘の段丘）",
       "license": "GSJ 公開。利用条件未確認",
-      "local": "sources/raw/gsj/takahata_1950_kamui.pdf（sha256 149f78cbdead153a01b7a85ec2e0ff32e569695ee59520bf3a457ec9f27f51ae）、OCR は takahata_1950_kamui.txt"
+      "local": "sources/raw/gsj/takahata_1950_kamui.pdf（sha256 149f78cbdead153a01b7a85ec2e0ff32e569695ee59520bf3a457ec9f27f51ae）、OCR は takahata_1950_kamui.txt。第1図の切り出しは sources/raw/gsj/fig/takahata_1950_fig1.png"
     },
     {
       "id": "SRC-037",
@@ -365,6 +365,16 @@
       "retrieved": "2026-09-29",
       "kind": "一次資料（郵便配達区域に「茂寄村大字大樹村小字尾田村砂金場」。大正元年版 908588/87、大正4年版 972536/86 にも）",
       "license": "インターネット公開（国立国会図書館デジタルコレクション）"
+    },
+    {
+      "id": "SRC-039",
+      "title": "5万分の1地質図幅「上札内」（釧路-第58号）の地質図の画像",
+      "publisher": "北海道立地下資源調査所、1979年（道総研の公開画像）",
+      "url": "https://www.hro.or.jp/upload/29684/kushiro58.jpg",
+      "retrieved": "2026-09-29",
+      "kind": "一次資料（段丘の区分。尾田面 Od、石坂面 Is、大樹面 Ta、拓北面 Th、上更別I面 Ka、光地園面 Kop など。坂下と Takinosawa の文字）",
+      "license": "道総研公開。利用条件未確認",
+      "local": "sources/raw/hro/kushiro58_map.jpg（3075×2106、sha256 a89f26595db5127c10f41a565455a75d70e430a6b1be955b6ddf2b22a5a0cc7e）"
     }
   ]
 }
