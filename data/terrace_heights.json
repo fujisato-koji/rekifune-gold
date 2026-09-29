@@ -1,0 +1,97 @@
+{
+ "_note": "tools/terrace_height.py が作る。比高＝段丘の中の点の標高 − 一番近い本流の谷底の標高。標高は地理院 dem_png z14（約10 m）。",
+ "site": "GS-006",
+ "n_samples": 1790,
+ "relative_height_m": {
+  "p10": 29.7,
+  "median": 55.1,
+  "p90": 58.0
+ },
+ "distance_to_river_m_median": 522,
+ "by_river_km": [
+  {
+   "river_km_from": 30.5,
+   "river_km_to": 31.0,
+   "n": 596,
+   "terrace_elev_m": {
+    "p10": 161.5,
+    "median": 202.7,
+    "p90": 206.3
+   },
+   "bed_elev_m": 147.6,
+   "relative_height_m_median": 55.4
+  },
+  {
+   "river_km_from": 31.0,
+   "river_km_to": 31.5,
+   "n": 347,
+   "terrace_elev_m": {
+    "p10": 201.8,
+    "median": 206.5,
+    "p90": 207.9
+   },
+   "bed_elev_m": 149.0,
+   "relative_height_m_median": 55.6
+  },
+  {
+   "river_km_from": 31.5,
+   "river_km_to": 32.0,
+   "n": 583,
+   "terrace_elev_m": {
+    "p10": 205.2,
+    "median": 208.6,
+    "p90": 212.4
+   },
+   "bed_elev_m": 153.1,
+   "relative_height_m_median": 55.3
+  },
+  {
+   "river_km_from": 32.0,
+   "river_km_to": 32.5,
+   "n": 182,
+   "terrace_elev_m": {
+    "p10": 198.8,
+    "median": 205.9,
+    "p90": 215.9
+   },
+   "bed_elev_m": 159.6,
+   "relative_height_m_median": 45.6
+  },
+  {
+   "river_km_from": 32.5,
+   "river_km_to": 33.0,
+   "n": 26,
+   "terrace_elev_m": {
+    "p10": 198.6,
+    "median": 200.4,
+    "p90": 203.3
+   },
+   "bed_elev_m": 161.8,
+   "relative_height_m_median": 38.6
+  },
+  {
+   "river_km_from": 33.0,
+   "river_km_to": 33.5,
+   "n": 40,
+   "terrace_elev_m": {
+    "p10": 185.5,
+    "median": 195.8,
+    "p90": 198.2
+   },
+   "bed_elev_m": 167.3,
+   "relative_height_m_median": 28.3
+  },
+  {
+   "river_km_from": 33.5,
+   "river_km_to": 34.0,
+   "n": 16,
+   "terrace_elev_m": {
+    "p10": 170.3,
+    "median": 186.3,
+    "p90": 191.7
+   },
+   "bed_elev_m": 168.5,
+   "relative_height_m_median": 17.0
+  }
+ ]
+}

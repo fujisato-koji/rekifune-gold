@@ -41,6 +41,8 @@ URL に `?base=old60` のように付けると、最初からその背景で開�
 | `sources/catalog.json` | 出典の目録。記録の `sources` 欄はここの id を指す |
 | `sources/raw/` | 取得した原本（PDF など）。git 管理外で、このPCにだけある。目録の `local` 欄に場所と sha256 を書く |
 | `tools/find_candidates.py` | 川の縦断面から、勾配が急に緩む点と合流点の下流を候補として拾う（`data/candidates.geojson`、`notes/placer-model.md`） |
+| `tools/terrace_height.py` | 段丘の比高（今の川底からの高さ）を出す（`data/terrace_heights.json`） |
+| `profile.html` | 川の縦断面と候補地点の図（`data/profiles.json`） |
 | `tools/extract_terrace.py` | 上札内図幅の地質図の画像から尾田面の範囲を切り出す |
 | `tools/mosaic.py` | 地理院タイルを範囲で切り出して 1 枚の画像にする（段丘の観察用） |
 | `tools/build_rivers.py` | taiki-core の国土数値情報 W05 から、歴舟川、当縁川、紋別川、アイホシマ川の水系を切り出す |

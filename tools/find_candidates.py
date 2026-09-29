@@ -120,6 +120,7 @@ def main():
     rivers = json.loads((ROOT / "data/rivers.geojson").read_text(encoding="utf-8"))
     feats = []
     target_pts = {}
+    profiles = {}
     for name in TARGETS:
         segs = [f["geometry"]["coordinates"] for f in rivers["features"] if f["properties"]["name"] == name]
         path = [p for p in chain(segs)]
@@ -132,6 +133,11 @@ def main():
                 zs[i] = zs[i - 1]
             zs[i] = max(zs[i], zs[i - 1])
         target_pts[name] = pts
+        profiles[name] = {
+            "step_km": STEP_KM,
+            "analysis_from_km": next((round(p[2], 1) for p in pts if p[0] <= LON_MAX), None),
+            "elev_m": [None if np.isnan(v) else round(float(v), 1) for v in zs],
+        }
         w = int(round(WIN_KM / STEP_KM))
         for i in range(w, len(pts) - w):
             lon, lat, d = pts[i]
@@ -162,6 +168,7 @@ def main():
                 "kind": "勾配が急に緩む点",
                 "name": f"{f['river']} 河口から {f['dist_km']:.1f} km：勾配の変わり目",
                 "river": f["river"],
+                "dist_km": round(f["dist_km"], 1),
                 "elev_m": round(f["elev"]),
                 "grad_up": f"{f['up'] * 1000:.0f}‰",
                 "grad_down": f"{f['down'] * 1000:.0f}‰",
@@ -191,6 +198,7 @@ def main():
                     "kind": "合流点の下流",
                     "name": f"{tname} 河口から {pts[k][2]:.1f} km：{nm or '名称不明の川'}の合流点の下流",
                     "river": tname,
+                    "dist_km": round(pts[k][2], 1),
                     "tributary": nm or "名称不明",
                 },
             })
@@ -229,6 +237,9 @@ def main():
     for i, f in enumerate(out, 1):
         f["properties"]["id"] = f"CP-{i:03d}"
     fc = {"type": "FeatureCollection", "_note": "tools/find_candidates.py が作る。地形の一般則からの候補で、砂金があることを示すものではない。", "features": out}
+    (ROOT / "data/profiles.json").write_text(json.dumps({
+        "_note": "tools/find_candidates.py が作る。河口からの距離 0.1 km ごとの谷底の標高（半径60 m の最小値を、下流に向かって上がらないようにならしたもの）。",
+        "rivers": profiles}, ensure_ascii=False), encoding="utf-8")
     (ROOT / "data/candidates.geojson").write_text(json.dumps(fc, ensure_ascii=False, indent=1), encoding="utf-8")
     kinds = {}
     for f in out:
