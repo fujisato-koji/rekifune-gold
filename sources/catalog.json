@@ -211,7 +211,7 @@
       "retrieved": "2026-09-29",
       "kind": "一次資料（明治27年〜昭和2年の全道の砂金産額と主要産出地の表、p.738。読み取りは notes/production-figures.md）",
       "license": "J-STAGE 公開（1928年刊）",
-      "local": "sources/raw/jstage/44_521_737.pdf"
+      "local": "sources/raw/jstage/44_521_737.pdf（sha256 d344aca925cd0c7eef30bd1b31a4056c6b541a6d961dceb2f66060417054022a）"
     },
     {
       "id": "SRC-023",
