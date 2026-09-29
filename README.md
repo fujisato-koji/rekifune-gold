@@ -29,6 +29,7 @@ python -m http.server 8791 --bind 127.0.0.1
 | `notes/` | 一次資料の読み取り（原文の抜き書き、コマ番号つき） |
 | `data/rivers.geojson` | 川の線（生成物。`tools/build_rivers.py` で作る） |
 | `sources/catalog.json` | 出典の目録。記録の `sources` 欄はここの id を指す |
+| `sources/raw/` | 取得した原本（PDF など）。git 管理外で、このPCにだけある。目録の `local` 欄に場所と sha256 を書く |
 | `tools/build_rivers.py` | taiki-core の国土数値情報 W05 から、歴舟川、当縁川、紋別川、アイホシマ川の水系を切り出す |
 
 ## 記録の書き方
