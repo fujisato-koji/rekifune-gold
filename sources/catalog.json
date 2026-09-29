@@ -202,6 +202,25 @@
       "kind": "一次資料（応用地質は温泉と骨材だけ。砂金の記述が無いことの確認）",
       "license": "GSJ 公開。利用条件未確認",
       "local": "sources/raw/gsj/churui_2003.pdf"
+    },
+    {
+      "id": "SRC-022",
+      "title": "北海道に於ける砂金及砂白金に就て（日本鑛業會誌 44巻521号 p.737-745）",
+      "publisher": "松本彬（札幌鉱山監督局 鉱山課長）、日本鉱業会、1928年9月",
+      "url": "https://www.jstage.jst.go.jp/article/shigentosozai1885/44/521/44_521_737/_article/-char/ja/",
+      "retrieved": "2026-09-29",
+      "kind": "一次資料（明治27年〜昭和2年の全道の砂金産額と主要産出地の表、p.738。読み取りは notes/production-figures.md）",
+      "license": "J-STAGE 公開（1928年刊）",
+      "local": "sources/raw/jstage/44_521_737.pdf"
+    },
+    {
+      "id": "SRC-023",
+      "title": "大樹町を巡る旅・大樹アウトドア情報",
+      "publisher": "北海道の旅（kitakaido.com）",
+      "url": "https://www.kitakaido.com/tokathi/taiki/taiki_12.html",
+      "retrieved": "2026-09-29",
+      "kind": "二次資料（加藤公夫『北海道砂金掘り』の紹介、2001年に中ノ川で大きな砂金塊が見つかったという話）",
+      "license": "引用のみ"
     }
   ]
 }
