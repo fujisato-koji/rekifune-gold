@@ -124,7 +124,7 @@ function confKey(s) {
 
 function siteDetail(p) {
   showDetail(p.name, [
-    ['種別', p.kind], ['時期', p.period], ['内容', p.summary],
+    ['種別', p.kind], ['時期', p.period], ['内容', p.summary], ['試掘の結果', p.result],
     ['座標の決め方', p.position], ['位置の確かさ', p.position_confidence], ['記録の確かさ', p.record_confidence],
   ], p.sources);
 }
@@ -232,7 +232,7 @@ Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unpla
 });
 
 function showRiver(r) {
-  showDetail(r.name, [['時期', r.period], ['内容', r.summary], ['記録の確かさ', r.record_confidence], ['区間', '不明（川全体に色を付けている）']], r.sources);
+  showDetail(r.name, [['時期', r.period], ['内容', r.summary], ['たまりやすい場所', r.hint], ['記録の確かさ', r.record_confidence], ['区間', '不明（川全体に色を付けている）']], r.sources);
 }
 
 // ---- 操作 ----

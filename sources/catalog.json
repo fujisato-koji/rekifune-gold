@@ -132,6 +132,76 @@
       "retrieved": "2026-09-29",
       "kind": "二次資料（郡域が今の大樹町、忠類、豊頃町の一部にあたること、明治9年に歴舟村、当縁村、大樹村が属したこと）",
       "license": "CC BY-SA 4.0"
+    },
+    {
+      "id": "SRC-015",
+      "title": "Reports and Official Letters to the Kaitakushi（ライマン \"Report of a Geological Trip through and around Yesso\" p.399-401、マンロー \"The Gold Fields of Yesso\" の \"The Tokachi Gold Field\" p.737-743 を所収）",
+      "publisher": "開拓使（Tokei: The Kaitakushi）、1875年",
+      "url": "https://archive.org/details/india.history.resource.106463",
+      "retrieved": "2026-09-29",
+      "kind": "一次資料（1874年の現地調査の報告。英文）",
+      "license": "1875年刊、著作権切れ（Internet Archive にライセンス表示なし）",
+      "local": "sources/raw/ia/reports-kaitakushi-1875_india.history.resource.106463.txt（OCR 全文。ライマンは 15831-15940 行、マンローは 29351-29650 行付近）"
+    },
+    {
+      "id": "SRC-016",
+      "title": "ライマン雑記(11) 北海道地質測量調査III（地質ニュース 486号 pp.56-66）",
+      "publisher": "副見恭子、地質調査所、1995年",
+      "url": "https://www.gsj.jp/data/chishitsunews/95_02_10.pdf",
+      "retrieved": "2026-09-29",
+      "kind": "二次資料（ライマンのフィールドブックに基づく旅程。1874年8月5日の通過時刻）",
+      "license": "GSJ 公開。利用条件未確認",
+      "local": "sources/raw/gsj/chishitsu-news-486_1995_lyman-zakki-11.pdf"
+    },
+    {
+      "id": "SRC-017",
+      "title": "5万分の1地質図幅説明書「神威岳」（釧路-第62号）",
+      "publisher": "長谷川潔、酒匂純俊、北海道開発庁、1958年",
+      "url": "https://www.hro.or.jp/upload/29689/kushiro62.pdf",
+      "retrieved": "2026-09-29",
+      "kind": "一次資料（地質調査。p.1、p.44、p.47「砂金」）",
+      "license": "道総研公開。利用条件未確認",
+      "local": "sources/raw/hro/kushiro62.pdf"
+    },
+    {
+      "id": "SRC-018",
+      "title": "5万分の1地質図幅説明書「上豊似」（釧路-第63号）",
+      "publisher": "秋葉力ほか、北海道開発庁、1975年",
+      "url": "https://www.hro.or.jp/upload/29691/kushiro63.pdf",
+      "retrieved": "2026-09-29",
+      "kind": "一次資料（地質調査。p.40「砂金の沢」）",
+      "license": "道総研公開。利用条件未確認",
+      "local": "sources/raw/hro/kushiro63.pdf"
+    },
+    {
+      "id": "SRC-019",
+      "title": "5万分の1地質図幅説明書「上札内」（釧路-第58号）",
+      "publisher": "松下勝秀ほか、北海道立地下資源調査所、1979年",
+      "url": "https://www.hro.or.jp/upload/29685/kushiro58.pdf",
+      "retrieved": "2026-09-29",
+      "kind": "一次資料（地質調査。p.44「VI 応用地質」）",
+      "license": "道総研公開。利用条件未確認",
+      "local": "sources/raw/hro/kushiro58.pdf"
+    },
+    {
+      "id": "SRC-020",
+      "title": "地域地質研究報告 5万分の1地質図幅「大樹地域の地質」（釧路(2)第64号）",
+      "publisher": "松井愈ほか、地質調査所、1974年",
+      "url": "https://www.gsj.jp/data/50KGM/PDF/GSJ_MAP_G050_02064_1974_D.pdf",
+      "retrieved": "2026-09-29",
+      "kind": "一次資料（砂金、金の語は出ない。記述が無いことの確認）",
+      "license": "GSJ 公開。利用条件未確認",
+      "local": "sources/raw/gsj/taiki_1974.pdf"
+    },
+    {
+      "id": "SRC-021",
+      "title": "地域地質研究報告 5万分の1地質図幅「忠類地域の地質」（釧路(2)第59号）",
+      "publisher": "山口昇一ほか、産業技術総合研究所 地質調査総合センター、2003年",
+      "url": "https://www.gsj.jp/data/50KGM/PDF/GSJ_MAP_G050_02059_2003_D.pdf",
+      "retrieved": "2026-09-29",
+      "kind": "一次資料（応用地質は温泉と骨材だけ。砂金の記述が無いことの確認）",
+      "license": "GSJ 公開。利用条件未確認",
+      "local": "sources/raw/gsj/churui_2003.pdf"
     }
   ]
 }
