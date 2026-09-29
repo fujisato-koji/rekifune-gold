@@ -1,0 +1,879 @@
+{
+ "type": "FeatureCollection",
+ "_note": "tools/find_candidates.py が作る。地形の一般則からの候補で、砂金があることを示すものではない。",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.10959,
+     42.4608
+    ]
+   },
+   "properties": {
+    "id": "CP-001",
+    "kind": "勾配が急に緩む点",
+    "name": "ヌビナイ川 河口から 12.6 km：勾配の変わり目",
+    "river": "ヌビナイ川",
+    "elev_m": 230,
+    "grad_up": "15‰",
+    "grad_down": "7‰",
+    "ratio": 2.0,
+    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.06231,
+     42.54314
+    ]
+   },
+   "properties": {
+    "id": "CP-002",
+    "kind": "勾配が急に緩む点",
+    "name": "ポンヤオロヌップ川 河口から 1.5 km：勾配の変わり目",
+    "river": "ポンヤオロヌップ川",
+    "elev_m": 222,
+    "grad_up": "19‰",
+    "grad_down": "9‰",
+    "ratio": 2.2,
+    "context": "明治39年に許可（RC-002）"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.03818,
+     42.54324
+    ]
+   },
+   "properties": {
+    "id": "CP-003",
+    "kind": "勾配が急に緩む点",
+    "name": "ポンヤオロヌップ川 河口から 3.9 km：勾配の変わり目",
+    "river": "ポンヤオロヌップ川",
+    "elev_m": 250,
+    "grad_up": "22‰",
+    "grad_down": "5‰",
+    "ratio": 4.1,
+    "context": "明治39年に許可（RC-002）"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     142.98215,
+     42.52344
+    ]
+   },
+   "properties": {
+    "id": "CP-004",
+    "kind": "勾配が急に緩む点",
+    "name": "ポンヤオロヌップ川 河口から 10.9 km：勾配の変わり目",
+    "river": "ポンヤオロヌップ川",
+    "elev_m": 352,
+    "grad_up": "21‰",
+    "grad_down": "10‰",
+    "ratio": 2.1,
+    "context": "明治39年に許可（RC-002）"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     142.94909,
+     42.49827
+    ]
+   },
+   "properties": {
+    "id": "CP-005",
+    "kind": "勾配が急に緩む点",
+    "name": "ポンヤオロヌップ川 河口から 18.5 km：勾配の変わり目",
+    "river": "ポンヤオロヌップ川",
+    "elev_m": 490,
+    "grad_up": "35‰",
+    "grad_down": "17‰",
+    "ratio": 2.1,
+    "context": "明治39年に許可（RC-002）"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.06275,
+     42.49992
+    ]
+   },
+   "properties": {
+    "id": "CP-006",
+    "kind": "勾配が急に緩む点",
+    "name": "歴舟中の川 河口から 15.3 km：勾配の変わり目",
+    "river": "歴舟中の川",
+    "elev_m": 208,
+    "grad_up": "15‰",
+    "grad_down": "5‰",
+    "ratio": 2.9,
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.04213,
+     42.50122
+    ]
+   },
+   "properties": {
+    "id": "CP-007",
+    "kind": "勾配が急に緩む点",
+    "name": "歴舟中の川 河口から 17.3 km：勾配の変わり目",
+    "river": "歴舟中の川",
+    "elev_m": 230,
+    "grad_up": "14‰",
+    "grad_down": "6‰",
+    "ratio": 2.2,
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     142.94969,
+     42.46845
+    ]
+   },
+   "properties": {
+    "id": "CP-008",
+    "kind": "勾配が急に緩む点",
+    "name": "歴舟中の川 河口から 28.9 km：勾配の変わり目",
+    "river": "歴舟中の川",
+    "elev_m": 390,
+    "grad_up": "33‰",
+    "grad_down": "10‰",
+    "ratio": 3.4,
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     142.93919,
+     42.46582
+    ]
+   },
+   "properties": {
+    "id": "CP-009",
+    "kind": "勾配が急に緩む点",
+    "name": "歴舟中の川 河口から 30.4 km：勾配の変わり目",
+    "river": "歴舟中の川",
+    "elev_m": 428,
+    "grad_up": "36‰",
+    "grad_down": "14‰",
+    "ratio": 2.5,
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.12542,
+     42.55852
+    ]
+   },
+   "properties": {
+    "id": "CP-010",
+    "kind": "勾配が急に緩む点",
+    "name": "歴舟川 河口から 31.3 km：勾配の変わり目",
+    "river": "歴舟川",
+    "elev_m": 150,
+    "grad_up": "9‰",
+    "grad_down": "4‰",
+    "ratio": 2.0,
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）。1950年の神威金鉱の区間（峡谷が扇状地に出る所、RC-005）の中"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.10975,
+     42.5571
+    ]
+   },
+   "properties": {
+    "id": "CP-011",
+    "kind": "勾配が急に緩む点",
+    "name": "歴舟川 河口から 33.0 km：勾配の変わり目",
+    "river": "歴舟川",
+    "elev_m": 164,
+    "grad_up": "17‰",
+    "grad_down": "7‰",
+    "ratio": 2.4,
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）。1950年の神威金鉱の区間（峡谷が扇状地に出る所、RC-005）の中"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.08849,
+     42.55498
+    ]
+   },
+   "properties": {
+    "id": "CP-012",
+    "kind": "勾配が急に緩む点",
+    "name": "歴舟川 河口から 35.1 km：勾配の変わり目",
+    "river": "歴舟川",
+    "elev_m": 187,
+    "grad_up": "16‰",
+    "grad_down": "5‰",
+    "ratio": 3.5,
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）。1950年の神威金鉱の区間（峡谷が扇状地に出る所、RC-005）の中"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.06407,
+     42.55016
+    ]
+   },
+   "properties": {
+    "id": "CP-013",
+    "kind": "勾配が急に緩む点",
+    "name": "歴舟川 河口から 37.7 km：勾配の変わり目",
+    "river": "歴舟川",
+    "elev_m": 209,
+    "grad_up": "15‰",
+    "grad_down": "4‰",
+    "ratio": 3.3,
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.04521,
+     42.55573
+    ]
+   },
+   "properties": {
+    "id": "CP-014",
+    "kind": "勾配が急に緩む点",
+    "name": "歴舟川 河口から 39.6 km：勾配の変わり目",
+    "river": "歴舟川",
+    "elev_m": 230,
+    "grad_up": "14‰",
+    "grad_down": "6‰",
+    "ratio": 2.2,
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     142.99214,
+     42.56135
+    ]
+   },
+   "properties": {
+    "id": "CP-015",
+    "kind": "勾配が急に緩む点",
+    "name": "歴舟川 河口から 45.1 km：勾配の変わり目",
+    "river": "歴舟川",
+    "elev_m": 280,
+    "grad_up": "13‰",
+    "grad_down": "4‰",
+    "ratio": 3.2,
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.18574,
+     42.52768
+    ]
+   },
+   "properties": {
+    "id": "CP-016",
+    "kind": "合流点の下流",
+    "name": "歴舟川 河口から 24.5 km：歴舟中の川の合流点の下流",
+    "river": "歴舟川",
+    "tributary": "歴舟中の川",
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.10492,
+     42.52391
+    ]
+   },
+   "properties": {
+    "id": "CP-017",
+    "kind": "合流点の下流",
+    "name": "歴舟中の川 河口から 9.5 km：西コウエイ川の合流点の下流",
+    "river": "歴舟中の川",
+    "tributary": "西コウエイ川",
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     142.94001,
+     42.46646
+    ]
+   },
+   "properties": {
+    "id": "CP-018",
+    "kind": "合流点の下流",
+    "name": "歴舟中の川 河口から 30.3 km：支六の沢川の合流点の下流",
+    "river": "歴舟中の川",
+    "tributary": "支六の沢川",
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     142.93147,
+     42.46271
+    ]
+   },
+   "properties": {
+    "id": "CP-019",
+    "kind": "合流点の下流",
+    "name": "歴舟中の川 河口から 31.2 km：支七の沢川の合流点の下流",
+    "river": "歴舟中の川",
+    "tributary": "支七の沢川",
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.10193,
+     42.55892
+    ]
+   },
+   "properties": {
+    "id": "CP-020",
+    "kind": "合流点の下流",
+    "name": "歴舟川 河口から 33.7 km：パンケ目方川の合流点の下流",
+    "river": "歴舟川",
+    "tributary": "パンケ目方川",
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）。1950年の神威金鉱の区間（峡谷が扇状地に出る所、RC-005）の中"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     142.92504,
+     42.54331
+    ]
+   },
+   "properties": {
+    "id": "CP-021",
+    "kind": "合流点の下流",
+    "name": "歴舟川 河口から 53.4 km：マオロマップ川の合流点の下流",
+    "river": "歴舟川",
+    "tributary": "マオロマップ川",
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     142.87342,
+     42.55932
+    ]
+   },
+   "properties": {
+    "id": "CP-022",
+    "kind": "合流点の下流",
+    "name": "歴舟川 河口から 60.4 km：ヤオロマップ左沢の合流点の下流",
+    "river": "歴舟川",
+    "tributary": "ヤオロマップ左沢",
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.03544,
+     42.43166
+    ]
+   },
+   "properties": {
+    "id": "CP-023",
+    "kind": "合流点の下流",
+    "name": "ヌビナイ川 河口から 20.7 km：クマの沢川の合流点の下流",
+    "river": "ヌビナイ川",
+    "tributary": "クマの沢川",
+    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.07915,
+     42.54874
+    ]
+   },
+   "properties": {
+    "id": "CP-024",
+    "kind": "合流点の下流",
+    "name": "歴舟川 河口から 36.3 km：ポンヤオロヌップ川の合流点の下流",
+    "river": "歴舟川",
+    "tributary": "ポンヤオロヌップ川",
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）。1950年の神威金鉱の区間（峡谷が扇状地に出る所、RC-005）の中"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     142.98348,
+     42.52753
+    ]
+   },
+   "properties": {
+    "id": "CP-025",
+    "kind": "合流点の下流",
+    "name": "ポンヤオロヌップ川 河口から 10.4 km：ペンケヤオロヌップ川の合流点の下流",
+    "river": "ポンヤオロヌップ川",
+    "tributary": "ペンケヤオロヌップ川",
+    "context": "明治39年に許可（RC-002）"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.14336,
+     42.52642
+    ]
+   },
+   "properties": {
+    "id": "CP-026",
+    "kind": "合流点の下流",
+    "name": "歴舟中の川 河口から 4.3 km：コウエイ川の合流点の下流",
+    "river": "歴舟中の川",
+    "tributary": "コウエイ川",
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.03692,
+     42.49901
+    ]
+   },
+   "properties": {
+    "id": "CP-027",
+    "kind": "合流点の下流",
+    "name": "歴舟中の川 河口から 17.8 km：支二の沢川の合流点の下流",
+    "river": "歴舟中の川",
+    "tributary": "支二の沢川",
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.01574,
+     42.47432
+    ]
+   },
+   "properties": {
+    "id": "CP-028",
+    "kind": "合流点の下流",
+    "name": "歴舟中の川 河口から 21.5 km：支四の沢川の合流点の下流",
+    "river": "歴舟中の川",
+    "tributary": "支四の沢川",
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.00774,
+     42.47345
+    ]
+   },
+   "properties": {
+    "id": "CP-029",
+    "kind": "合流点の下流",
+    "name": "歴舟中の川 河口から 22.4 km：支五の沢川の合流点の下流",
+    "river": "歴舟中の川",
+    "tributary": "支五の沢川",
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.05075,
+     42.43877
+    ]
+   },
+   "properties": {
+    "id": "CP-030",
+    "kind": "合流点の下流",
+    "name": "ヌビナイ川 河口から 19.1 km：ポン十の沢川の合流点の下流",
+    "river": "ヌビナイ川",
+    "tributary": "ポン十の沢川",
+    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.09188,
+     42.557
+    ]
+   },
+   "properties": {
+    "id": "CP-031",
+    "kind": "合流点の下流",
+    "name": "歴舟川 河口から 34.7 km：ペンケ目方川の合流点の下流",
+    "river": "歴舟川",
+    "tributary": "ペンケ目方川",
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）。1950年の神威金鉱の区間（峡谷が扇状地に出る所、RC-005）の中"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     142.98559,
+     42.56356
+    ]
+   },
+   "properties": {
+    "id": "CP-032",
+    "kind": "合流点の下流",
+    "name": "歴舟川 河口から 45.8 km：一の沢川の合流点の下流",
+    "river": "歴舟川",
+    "tributary": "一の沢川",
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.13309,
+     42.4906
+    ]
+   },
+   "properties": {
+    "id": "CP-033",
+    "kind": "合流点の下流",
+    "name": "ヌビナイ川 河口から 8.2 km：ポン一の沢川の合流点の下流",
+    "river": "ヌビナイ川",
+    "tributary": "ポン一の沢川",
+    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）。砂金の沢（GS-010）から 1.5 km 以内"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.12627,
+     42.48473
+    ]
+   },
+   "properties": {
+    "id": "CP-034",
+    "kind": "合流点の下流",
+    "name": "ヌビナイ川 河口から 9.1 km：ポン二の沢川の合流点の下流",
+    "river": "ヌビナイ川",
+    "tributary": "ポン二の沢川",
+    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）。砂金の沢（GS-010）から 1.5 km 以内"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.11812,
+     42.47472
+    ]
+   },
+   "properties": {
+    "id": "CP-035",
+    "kind": "合流点の下流",
+    "name": "ヌビナイ川 河口から 10.7 km：ポン三の沢川の合流点の下流",
+    "river": "ヌビナイ川",
+    "tributary": "ポン三の沢川",
+    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）。砂金の沢（GS-010）から 1.5 km 以内"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.10959,
+     42.4608
+    ]
+   },
+   "properties": {
+    "id": "CP-036",
+    "kind": "合流点の下流",
+    "name": "ヌビナイ川 河口から 12.6 km：ポン四の沢川の合流点の下流",
+    "river": "ヌビナイ川",
+    "tributary": "ポン四の沢川",
+    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.09542,
+     42.45593
+    ]
+   },
+   "properties": {
+    "id": "CP-037",
+    "kind": "合流点の下流",
+    "name": "ヌビナイ川 河口から 14.3 km：ポン五の沢川の合流点の下流",
+    "river": "ヌビナイ川",
+    "tributary": "ポン五の沢川",
+    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.08171,
+     42.45187
+    ]
+   },
+   "properties": {
+    "id": "CP-038",
+    "kind": "合流点の下流",
+    "name": "ヌビナイ川 河口から 15.7 km：ポン六の沢川の合流点の下流",
+    "river": "ヌビナイ川",
+    "tributary": "ポン六の沢川",
+    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.08056,
+     42.45157
+    ]
+   },
+   "properties": {
+    "id": "CP-039",
+    "kind": "合流点の下流",
+    "name": "ヌビナイ川 河口から 15.8 km：ポン七の沢川の合流点の下流",
+    "river": "ヌビナイ川",
+    "tributary": "ポン七の沢川",
+    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.0682,
+     42.4479
+    ]
+   },
+   "properties": {
+    "id": "CP-040",
+    "kind": "合流点の下流",
+    "name": "ヌビナイ川 河口から 17.0 km：ポン八の沢川の合流点の下流",
+    "river": "ヌビナイ川",
+    "tributary": "ポン八の沢川",
+    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.05985,
+     42.44624
+    ]
+   },
+   "properties": {
+    "id": "CP-041",
+    "kind": "合流点の下流",
+    "name": "ヌビナイ川 河口から 17.8 km：ポン九の沢川の合流点の下流",
+    "river": "ヌビナイ川",
+    "tributary": "ポン九の沢川",
+    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.053,
+     42.54131
+    ]
+   },
+   "properties": {
+    "id": "CP-042",
+    "kind": "合流点の下流",
+    "name": "ポンヤオロヌップ川 河口から 2.4 km：パンヤオロマップ川の合流点の下流",
+    "river": "ポンヤオロヌップ川",
+    "tributary": "パンヤオロマップ川",
+    "context": "明治39年に許可（RC-002）"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.10149,
+     42.5191
+    ]
+   },
+   "properties": {
+    "id": "CP-043",
+    "kind": "合流点の下流",
+    "name": "歴舟中の川 河口から 10.3 km：東コウエイ川の合流点の下流",
+    "river": "歴舟中の川",
+    "tributary": "東コウエイ川",
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.0481,
+     42.49951
+    ]
+   },
+   "properties": {
+    "id": "CP-044",
+    "kind": "合流点の下流",
+    "name": "歴舟中の川 河口から 16.7 km：支一の沢川の合流点の下流",
+    "river": "歴舟中の川",
+    "tributary": "支一の沢川",
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.04373,
+     42.50004
+    ]
+   },
+   "properties": {
+    "id": "CP-045",
+    "kind": "合流点の下流",
+    "name": "歴舟中の川 河口から 17.1 km：吉田の沢川の合流点の下流",
+    "river": "歴舟中の川",
+    "tributary": "吉田の沢川",
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     143.02875,
+     42.48573
+    ]
+   },
+   "properties": {
+    "id": "CP-046",
+    "kind": "合流点の下流",
+    "name": "歴舟中の川 河口から 19.6 km：支三の沢川の合流点の下流",
+    "river": "歴舟中の川",
+    "tributary": "支三の沢川",
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+   }
+  }
+ ]
+}

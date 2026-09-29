@@ -153,7 +153,7 @@ async function load(path) {
 const dataReady = Promise.all([
   load('sources/catalog.json'), load('data/sites.geojson'), load('data/rivers.geojson'),
   load('data/river_records.json'), load('data/unplaced.json'), load('data/district_records.json'),
-  load('data/reaches.geojson'),
+  load('data/reaches.geojson'), load('data/candidates.geojson'),
 ]);
 const styleReady = new Promise((ok) => map.once('style.load', ok));
 
@@ -239,7 +239,7 @@ function addItem(listId, key, html, onSelect) {
   if (key) selectors[key] = () => li.click();
 }
 
-Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unplaced, districts, reaches]]) => {
+Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unplaced, districts, reaches, candidates]]) => {
   for (const s of cat.sources) catalog[s.id] = s;
 
   // 川: 採取記録のある川の名前に印を付ける
@@ -271,7 +271,32 @@ Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unpla
   map.addLayer({ id: 'areas', type: 'fill', source: 'areas', paint: { 'fill-color': '#7b2cbf', 'fill-opacity': 0.25 } });
   map.addLayer({ id: 'areas-line', type: 'line', source: 'areas', paint: { 'line-color': '#7b2cbf', 'line-width': 2, 'line-dasharray': [2, 1] } });
 
+  // 候補地点（地形から推定）
+  map.addSource('candidates', { type: 'geojson', data: candidates });
+  map.addLayer({
+    id: 'candidates', type: 'circle', source: 'candidates',
+    paint: {
+      'circle-radius': ['case', ['==', ['get', 'kind'], '勾配が急に緩む点'], 7, 5],
+      'circle-color': ['case', ['==', ['get', 'kind'], '勾配が急に緩む点'], '#0ca678', '#74c0fc'],
+      'circle-stroke-color': '#ffffff', 'circle-stroke-width': 2,
+    },
+  });
+
   setupHighlight();
+
+  for (const f of candidates.features) {
+    const p = f.properties;
+    addItem('candidates', p.id, `${esc(p.name)}<span class="meta">${esc(p.context)}</span>`, () => {
+      highlight([f], p.name);
+      showDetail(p.name, [
+        ['地図', '水色の丸がこの地点（緑の丸は勾配の変わり目、青の丸は合流点の下流）'],
+        ['種類', p.kind], ['川', p.river], ['支流', p.tributary],
+        ['上流1 kmの勾配', p.grad_up], ['下流1 kmの勾配', p.grad_down], ['谷底の標高', p.elev_m != null ? `${p.elev_m} m` : null],
+        ['近くの記録', p.context],
+        ['注意', '地形の一般則から機械的に拾った候補で、砂金があることを示すものではない。川の線は国土数値情報で、実際の流れから数十〜数百 m ずれる。考え方は notes/placer-model.md'],
+      ], ['SRC-011', 'SRC-013']);
+    });
+  }
 
   // 採取地: HTML マーカー（地形の高さに追従する）。面は頂点の平均に置く
   for (const f of sites.features) {
@@ -308,16 +333,16 @@ Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unpla
     addItem('rivers', `river:${r.name}`, `${esc(r.name)}<span class="meta">${esc(r.period)}</span>`, () => selectRiver(r.name));
   }
 
-  // 地図を押したとき：区間 → 段丘 → 川 の順に拾う
+  // 地図を押したとき：候補 → 区間 → 段丘 → 川 の順に拾う
   map.on('click', (e) => {
-    const hit = map.queryRenderedFeatures(e.point, { layers: ['reaches', 'areas', 'rivers'] });
+    const hit = map.queryRenderedFeatures(e.point, { layers: ['candidates', 'reaches', 'areas', 'rivers'] });
     if (!hit.length) return;
     const h = hit[0];
     if (h.layer.id !== 'rivers') selectors[h.properties.id]();
     else if (recByName[h.properties.name]) selectors[`river:${h.properties.name}`]();
     else selectRiver(h.properties.name, h.properties.system);
   });
-  for (const id of ['reaches', 'areas', 'rivers']) {
+  for (const id of ['candidates', 'reaches', 'areas', 'rivers']) {
     map.on('mouseenter', id, () => { map.getCanvas().style.cursor = 'pointer'; });
     map.on('mouseleave', id, () => { map.getCanvas().style.cursor = ''; });
   }
