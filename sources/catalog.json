@@ -179,7 +179,7 @@
       "publisher": "松下勝秀ほか、北海道立地下資源調査所、1979年",
       "url": "https://www.hro.or.jp/upload/29685/kushiro58.pdf",
       "retrieved": "2026-09-29",
-      "kind": "一次資料（地質調査。p.44「VI 応用地質」）",
+      "kind": "一次資料（p.9 尾田面の比高、p.10 石坂面、p.38 尾田面の礫層は大樹層の上に約4 m、p.44 応用地質）",
       "license": "道総研公開。利用条件未確認",
       "local": "sources/raw/hro/kushiro58.pdf"
     },
@@ -189,7 +189,7 @@
       "publisher": "松井愈ほか、地質調査所、1974年",
       "url": "https://www.gsj.jp/data/50KGM/PDF/GSJ_MAP_G050_02064_1974_D.pdf",
       "retrieved": "2026-09-29",
-      "kind": "一次資料（砂金、金の語は出ない。記述が無いことの確認）",
+      "kind": "一次資料（p.45 尾田面堆積物は新第三紀の基盤上の4〜5 m の礫層、p.46 石坂面と大樹面の礫は1〜3 m。砂金の記述は無い）",
       "license": "GSJ 公開。利用条件未確認",
       "local": "sources/raw/gsj/taiki_1974.pdf"
     },
@@ -404,6 +404,96 @@
       "retrieved": "2026-09-29",
       "kind": "未読の手がかり。北海道金属非金属鉱床総覧 1967（2513558、神威金山）、大樹町史 1969（9539029、神威金山、原園純秀）、新・大樹町史 1995（13227510）、札幌地方商工局管内鑛區一覧 1947（8322645、原園純秀、大樹村 砂金）、札幌通商産業局管内鉱区一覧 1962〜65（2456028〜2456031、原園）、北海道地質要報 1951-03（1828501）と 1959-03（1828522）、科学朝日 1949-03（2335594）、文芸春秋 1951-02（3197907）と 1955-04（3198053）",
       "license": "図書館送信（手元では本文を読めない）"
+    },
+    {
+      "id": "SRC-043",
+      "title": "日高山脈及夕張山脈に於ける砂金の現出状態（其一）",
+      "publisher": "伊木常誠、地学雑誌 24(1) pp.12-22、1912年",
+      "url": "https://doi.org/10.5026/jgeography.24.12",
+      "retrieved": "2026-09-29",
+      "kind": "一次資料（pp.20-21 十勝國ペルブネイ川の砂金。三支流、岩盤の割れ目、粒径、1人1日の収得、ヌビナイ川）",
+      "license": "J-STAGE 公開",
+      "local": "sources/raw/lit/iki1912a_chigaku24-1.pdf（sha256 487c944d2c8875ffd6593f3f2d6509de24bf5b79ff4e1180ad25c66c8f560afe）"
+    },
+    {
+      "id": "SRC-044",
+      "title": "日高山脈及夕張山脈に於ける砂金の現出状態（其二）",
+      "publisher": "伊木常誠、地学雑誌 24(12) pp.811-817、1912年",
+      "url": "https://doi.org/10.5026/jgeography.24.811",
+      "retrieved": "2026-09-29",
+      "kind": "一次資料（砂金の三種、段丘の砂金は水の便が悪く手付かず、峡谷の出口に多い）",
+      "license": "J-STAGE 公開",
+      "local": "sources/raw/lit/iki1912b_chigaku24-12.pdf（sha256 1246f1b238def411d9ff6253e151a9fae39087303ed28f60b4a308f0920c057a）"
+    },
+    {
+      "id": "SRC-045",
+      "title": "日高山脈及夕張山脈に於ける砂金の現出状態（其三）",
+      "publisher": "伊木常誠、地学雑誌 25(1) pp.20-25、1913年",
+      "url": "https://doi.org/10.5026/jgeography.25.20",
+      "retrieved": "2026-09-29",
+      "kind": "一次資料（起源は古生層、Natural Sluice、砂金がたまる5条件 p.23）",
+      "license": "J-STAGE 公開",
+      "local": "sources/raw/lit/iki1913_chigaku25-1.pdf（sha256 be9ad61343c94d327e5db3b87fa4d94bb0c6980f31ca9470c65ac5d9da9129ef）"
+    },
+    {
+      "id": "SRC-046",
+      "title": "十勝平野の第四系（第II報）とくに地形面と層序について",
+      "publisher": "十勝団体研究会、第四紀研究 7(1) pp.1-14、1968年",
+      "url": "https://doi.org/10.4116/jaqua.7.1",
+      "retrieved": "2026-09-29",
+      "kind": "段丘の区分（朝日面、拓北面、忠類面、尾田面、石坂面）の命名元。忠類面の時代に歴舟川が当縁川とメム川に流れていた",
+      "license": "J-STAGE 公開",
+      "local": "sources/raw/lit/tokachi_danken1968_jaqua7.pdf（sha256 18b1a1afc42cd62fbcabf0101d188682cc1c69961f4fa23ad22aa6e0181bc78b）"
+    },
+    {
+      "id": "SRC-047",
+      "title": "十勝平野の地形発達史",
+      "publisher": "平川一臣、小野有五、地理学評論 47(10) pp.607-632、1974年",
+      "url": "https://doi.org/10.4157/grj.47.607",
+      "retrieved": "2026-09-29",
+      "kind": "尾田付近の KoI 埋没谷（基底は現河床付近、礫20〜30 m）、後氷期の20〜50 m の下刻",
+      "license": "J-STAGE 公開",
+      "local": "sources/raw/lit/hirakawa_ono1974_grj47.pdf（sha256 6ec5f8fe1970805c0940eafb71f67edc5bdfba7727d25cdbf13b2789f412c74d）"
+    },
+    {
+      "id": "SRC-048",
+      "title": "日高西縁輝緑岩帯の含金斧石石英脈",
+      "publisher": "鈴木守、藤原哲夫、岩石鉱物鉱床学会誌 65(2) pp.39-49、1971年",
+      "url": "https://doi.org/10.2465/ganko1941.65.39",
+      "retrieved": "2026-09-29",
+      "kind": "日高帯の含金石英脈の記載（歴舟川の流域ではない）",
+      "license": "J-STAGE 公開",
+      "local": "sources/raw/lit/suzuki_fujiwara1971.pdf（sha256 09b20aa6726533ed0eb04a4bfaea2a44b3f6c64b19e30c90dc760d3074900b64）"
+    },
+    {
+      "id": "SRC-049",
+      "title": "柳之御所遺跡の出土遺物に付着した金の産地推測と統計分析",
+      "publisher": "山本けい子ほか、函館工業高等専門学校紀要 52 pp.105-110、2018年",
+      "url": "https://doi.org/10.20706/hakodatekosen.52.0_105",
+      "retrieved": "2026-09-29",
+      "kind": "北海道17か所の砂金の平均組成（Ag 9.0 mass%）",
+      "license": "J-STAGE 公開",
+      "local": "sources/raw/lit/yamamoto2018_hakodate.pdf（sha256 db37e8ccdc4463f299bbbc84e7375f7ba1025e7c218495b28bd54624a48f4577）"
+    },
+    {
+      "id": "SRC-050",
+      "title": "Chemical and physical heterogeneity within native gold: implications for the design of gold particle studies",
+      "publisher": "Chapman, R.J. ほか、Mineralium Deposita 56(8) pp.1563-1588、2021年",
+      "url": "https://doi.org/10.1007/s00126-020-01036-x",
+      "retrieved": "2026-09-29",
+      "kind": "砂金の組成と包有物で源を推定する方法（150粒以上）",
+      "license": "オープンアクセス",
+      "local": "sources/raw/lit/chapman2021_mindep.pdf（sha256 b67551a232c9c6e8cbd78a5052cedec24bb4c7da240be507223ab1037cc30514）"
+    },
+    {
+      "id": "SRC-051",
+      "title": "Microchemical Characterization of Alluvial Gold Grains as an Exploration Tool",
+      "publisher": "Chapman, R., Leake, B., Styles, M.、Gold Bulletin 35(2) pp.53-65、2002年",
+      "url": "https://doi.org/10.1007/BF03214838",
+      "retrieved": "2026-09-29",
+      "kind": "砂金の微量化学と包有物による源の判定",
+      "license": "オープンアクセス",
+      "local": "sources/raw/lit/chapman_leake_styles2002_goldbull.pdf（sha256 41eaa0ecbff0d1c4adf3bfcb2d06966a7723e2adec47610ee384914192da0dcd）"
     }
   ]
 }

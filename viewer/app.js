@@ -136,7 +136,7 @@ function confKey(s) {
 function siteDetail(p) {
   showDetail(p.name, [
     ['地図', '水色で光っている所がこの場所'],
-    ['種別', p.kind], ['時期', p.period], ['内容', p.summary], ['試掘の結果', p.result], ['1950年より後', p.after_1950], ['比高', p.relative_height],
+    ['種別', p.kind], ['時期', p.period], ['内容', p.summary], ['試掘の結果', p.result], ['1950年より後', p.after_1950], ['比高', p.relative_height], ['文献', p.literature],
     ['座標の決め方', p.position], ['位置の確かさ', p.position_confidence], ['記録の確かさ', p.record_confidence],
   ], p.sources);
 }

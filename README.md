@@ -36,7 +36,7 @@ URL に `?base=old60` のように付けると、最初からその背景で開�
 | `data/reach_records.json` | 区間（川筋）の記録。`tools/build_reaches.py` が `data/reaches.geojson` を作る |
 | `data/district_records.json` | 郡単位の記録（明治の許可区域の合計など） |
 | `data/unplaced.json` | 記録はあるが位置が分からないもの |
-| `notes/` | 一次資料の読み取り（原文の抜き書き、コマ番号つき） |
+| `notes/` | 一次資料の読み取り（原文の抜き書き、コマ番号つき）。文献の一覧と要点は `notes/literature.md`、考察は `notes/placer-model.md` |
 | `data/rivers.geojson` | 川の線（生成物。`tools/build_rivers.py` で作る） |
 | `sources/catalog.json` | 出典の目録。記録の `sources` 欄はここの id を指す |
 | `sources/raw/` | 取得した原本（PDF など）。git 管理外で、このPCにだけある。目録の `local` 欄に場所と sha256 を書く |
