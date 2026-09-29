@@ -408,7 +408,7 @@ function reachDetail(p) {
   showDetail(p.name, [
     ['地図', '水色で光っている線がこの区間'],
     ['昔の名前', p.historic_names], ['今の川との対応', p.mapping], ['時期', p.period], ['内容', p.summary],
-    ['採取高', p.production], ['区間の分かり方', p.section_known], ['記録の確かさ', p.record_confidence],
+    ['採取高', p.production], ['たまりやすい場所', p.hint], ['区間の分かり方', p.section_known], ['記録の確かさ', p.record_confidence],
   ], p.sources);
 }
 
