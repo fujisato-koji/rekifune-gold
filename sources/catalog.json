@@ -375,6 +375,16 @@
       "kind": "一次資料（段丘の区分。尾田面 Od、石坂面 Is、大樹面 Ta、拓北面 Th、上更別I面 Ka、光地園面 Kop など。坂下と Takinosawa の文字）",
       "license": "道総研公開。利用条件未確認",
       "local": "sources/raw/hro/kushiro58_map.jpg（3075×2106、sha256 a89f26595db5127c10f41a565455a75d70e430a6b1be955b6ddf2b22a5a0cc7e）"
+    },
+    {
+      "id": "SRC-040",
+      "title": "山地災害危険地区（GIS）【北海道】（山腹崩壊危険地区、崩壊土砂流出危険地区）",
+      "publisher": "北海道 水産林務部 林務局 治山課（北海道オープンデータポータル）",
+      "url": "https://www.harp.lg.jp/opendata/dataset/1316.html",
+      "retrieved": "2026-09-29",
+      "kind": "地理データ（大樹町字光地園の「砂金の沢第１」641-641-0008、「砂金の沢第２」641-641-0009）",
+      "license": "CC BY",
+      "local": "sources/raw/hokkaido-od/ hokkaido_keiryu_kiken.geojson（sha256 aa683609cfa877b47ea441dac8a8dc3bc0dcc9cc85b2a9463c4119ee1759f842）、hokkaido_sanpuku_kiken.geojson（sha256 6aa038fa5002bb533fde94fc8c571229851acbdc36173954dcf36510819f52ef）"
     }
   ]
 }

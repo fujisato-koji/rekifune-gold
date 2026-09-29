@@ -122,7 +122,11 @@ function showDetail(title, rows, sources) {
     rows.filter(([, v]) => v).map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('') +
     `<dt>出典</dt><dd>${sourceList(sources)}</dd></dl>`;
   el.hidden = false;
-  el.querySelector('.close').onclick = () => { el.hidden = true; };
+  el.querySelector('.close').onclick = () => {
+    el.hidden = true;
+    clearHighlight();
+    document.querySelectorAll('#panel li.sel').forEach((x) => x.classList.remove('sel'));
+  };
 }
 
 function confKey(s) {
@@ -131,6 +135,7 @@ function confKey(s) {
 
 function siteDetail(p) {
   showDetail(p.name, [
+    ['地図', '水色で光っている所がこの場所'],
     ['種別', p.kind], ['時期', p.period], ['内容', p.summary], ['試掘の結果', p.result],
     ['座標の決め方', p.position], ['位置の確かさ', p.position_confidence], ['記録の確かさ', p.record_confidence],
   ], p.sources);
@@ -152,12 +157,95 @@ const dataReady = Promise.all([
 ]);
 const styleReady = new Promise((ok) => map.once('style.load', ok));
 
+// ---- 選んだものを地図で光らせる ----
+
+const HL_EMPTY = { type: 'FeatureCollection', features: [] };
+const PAD = () => (window.innerWidth < 700
+  ? { top: 40, bottom: 40, left: 20, right: 20 }
+  : { top: 60, bottom: 60, left: 340, right: 380 });
+let hlLabel = null;
+
+function setupHighlight() {
+  map.addSource('hl', { type: 'geojson', data: HL_EMPTY });
+  const poly = ['in', ['geometry-type'], ['literal', ['Polygon', 'MultiPolygon']]];
+  const pt = ['in', ['geometry-type'], ['literal', ['Point', 'MultiPoint']]];
+  map.addLayer({ id: 'hl-fill', type: 'fill', source: 'hl', filter: poly, paint: { 'fill-color': '#00e5ff', 'fill-opacity': 0.35 } });
+  map.addLayer({ id: 'hl-casing', type: 'line', source: 'hl', layout: { 'line-join': 'round', 'line-cap': 'round' }, paint: { 'line-color': '#ffffff', 'line-width': 14, 'line-opacity': 0.95 } });
+  map.addLayer({ id: 'hl-line', type: 'line', source: 'hl', layout: { 'line-join': 'round', 'line-cap': 'round' }, paint: { 'line-color': '#00b4d8', 'line-width': 7 } });
+  map.addLayer({ id: 'hl-point', type: 'circle', source: 'hl', filter: pt, paint: { 'circle-radius': 24, 'circle-color': 'rgba(0,229,255,0.25)', 'circle-stroke-color': '#00b4d8', 'circle-stroke-width': 4 } });
+}
+
+// 座標の配列を平らにする（Point から MultiPolygon まで）
+function flatCoords(g) {
+  const out = [];
+  const walk = (c) => { if (typeof c[0] === 'number') out.push(c); else c.forEach(walk); };
+  walk(g.coordinates);
+  return out;
+}
+
+// 札を置く点：線なら一番長い線の真ん中の頂点、面なら頂点の平均、点ならその点
+function labelPoint(features) {
+  let best = null;
+  for (const f of features) {
+    const g = f.geometry;
+    if (g.type === 'Point') return g.coordinates;
+    const lines = g.type === 'LineString' ? [g.coordinates] : g.type === 'MultiLineString' ? g.coordinates : null;
+    if (!lines) {
+      const cs = flatCoords(g);
+      return [cs.reduce((a, c) => a + c[0], 0) / cs.length, cs.reduce((a, c) => a + c[1], 0) / cs.length];
+    }
+    for (const l of lines) if (!best || l.length > best.length) best = l;
+  }
+  return best ? best[Math.floor(best.length / 2)] : null;
+}
+
+function highlight(features, label) {
+  map.getSource('hl').setData({ type: 'FeatureCollection', features });
+  if (hlLabel) hlLabel.remove();
+  hlLabel = null;
+  const at = labelPoint(features);
+  if (at) {
+    const el = document.createElement('div');
+    el.className = 'hl-label';
+    el.textContent = label;
+    hlLabel = new maplibregl.Marker({ element: el, anchor: 'bottom', offset: [0, -14] }).setLngLat(at).addTo(map);
+  }
+  const cs = features.flatMap((f) => flatCoords(f.geometry));
+  if (!cs.length) return;
+  const b = cs.reduce((bb, c) => bb.extend(c), new maplibregl.LngLatBounds(cs[0], cs[0]));
+  if (b.getNorth() - b.getSouth() < 0.002 && b.getEast() - b.getWest() < 0.002) {
+    map.flyTo({ center: b.getCenter(), zoom: 14, pitch: 45, padding: PAD() });
+  } else {
+    map.fitBounds(b, { padding: PAD(), pitch: 30, maxZoom: 14.5 });
+  }
+}
+
+function clearHighlight() {
+  if (map.getSource('hl')) map.getSource('hl').setData(HL_EMPTY);
+  if (hlLabel) { hlLabel.remove(); hlLabel = null; }
+}
+
+// 一覧の項目を作る。選ぶと地図で光らせて詳細を出す
+const selectors = {};
+function addItem(listId, key, html, onSelect) {
+  const li = document.createElement('li');
+  li.innerHTML = html;
+  li.onclick = () => {
+    document.querySelectorAll('#panel li.sel').forEach((x) => x.classList.remove('sel'));
+    li.classList.add('sel');
+    onSelect();
+  };
+  document.getElementById(listId).appendChild(li);
+  if (key) selectors[key] = () => li.click();
+}
+
 Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unplaced, districts, reaches]]) => {
   for (const s of cat.sources) catalog[s.id] = s;
 
   // 川: 採取記録のある川の名前に印を付ける
   const recByName = Object.fromEntries(riverRec.records.map((r) => [r.name, r]));
   for (const f of rivers.features) f.properties.gold = recByName[f.properties.name] ? 1 : 0;
+  const riverFeatures = (name) => rivers.features.filter((f) => f.properties.name === name);
   map.addSource('rivers', { type: 'geojson', data: rivers });
   map.addLayer({
     id: 'rivers', type: 'line', source: 'rivers',
@@ -168,14 +256,6 @@ Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unpla
       'line-opacity': 0.9,
     },
   });
-  map.on('mouseenter', 'rivers', () => { map.getCanvas().style.cursor = 'pointer'; });
-  map.on('mouseleave', 'rivers', () => { map.getCanvas().style.cursor = ''; });
-  map.on('click', 'rivers', (e) => {
-    const p = e.features[0].properties;
-    const r = recByName[p.name];
-    if (r) showRiver(r);
-    else showDetail(p.name || '名称不明の川', [['水系', p.system], ['採取記録', 'なし（未調査）']], ['SRC-011']);
-  });
 
   // 区間: 許可や報告で川筋まで分かっているもの
   map.addSource('reaches', { type: 'geojson', data: reaches });
@@ -184,92 +264,87 @@ Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unpla
     layout: { 'line-join': 'round', 'line-cap': 'round' },
     paint: { 'line-color': '#e8590c', 'line-width': 6, 'line-opacity': 0.85 },
   });
-  map.on('mouseenter', 'reaches', () => { map.getCanvas().style.cursor = 'pointer'; });
-  map.on('mouseleave', 'reaches', () => { map.getCanvas().style.cursor = ''; });
-  const reachById = Object.fromEntries(reaches.features.map((f) => [f.properties.id, f]));
-  map.on('click', 'reaches', (e) => { reachDetail(reachById[e.features[0].properties.id].properties); });
-  const rcl = document.getElementById('reaches');
-  for (const f of reaches.features) {
-    const p = f.properties;
-    const li = document.createElement('li');
-    li.innerHTML = `${esc(p.name)}<span class="meta">${esc(p.period)}</span>`;
-    li.onclick = () => {
-      const b = new maplibregl.LngLatBounds();
-      const lines = f.geometry.type === 'LineString' ? [f.geometry.coordinates] : f.geometry.coordinates;
-      lines.forEach((l) => l.forEach((c) => b.extend(c)));
-      map.fitBounds(b, { padding: 80, pitch: 60 });
-      reachDetail(p);
-    };
-    rcl.appendChild(li);
-  }
 
   // 面の採取地（段丘など）
-  const areas = { type: 'FeatureCollection', features: sites.features.filter((f) => f.geometry.type === 'Polygon') };
-  map.addSource('areas', { type: 'geojson', data: areas });
+  const isArea = (f) => f.geometry.type === 'Polygon' || f.geometry.type === 'MultiPolygon';
+  map.addSource('areas', { type: 'geojson', data: { type: 'FeatureCollection', features: sites.features.filter(isArea) } });
   map.addLayer({ id: 'areas', type: 'fill', source: 'areas', paint: { 'fill-color': '#7b2cbf', 'fill-opacity': 0.25 } });
   map.addLayer({ id: 'areas-line', type: 'line', source: 'areas', paint: { 'line-color': '#7b2cbf', 'line-width': 2, 'line-dasharray': [2, 1] } });
 
-  // 採取地: HTML マーカー（地形の高さに追従する）。面は重心に置く
-  const ul = document.getElementById('sites');
+  setupHighlight();
+
+  // 採取地: HTML マーカー（地形の高さに追従する）。面は頂点の平均に置く
   for (const f of sites.features) {
     const p = f.properties;
-    if (f.geometry.type === 'Polygon') {
-      const ring = f.geometry.coordinates[0].slice(0, -1);
-      f.geometry = { type: 'Point', coordinates: [ring.reduce((a, c) => a + c[0], 0) / ring.length, ring.reduce((a, c) => a + c[1], 0) / ring.length] };
-    }
     const el = document.createElement('div');
     el.className = 'marker';
     el.style.background = CONF_COLOR[confKey(p.position_confidence)] || 'var(--lo)';
     el.innerHTML = `<span class="marker-label">${esc(p.name)}</span>`;
-    el.addEventListener('click', (ev) => { ev.stopPropagation(); siteDetail(p); });
-    new maplibregl.Marker({ element: el }).setLngLat(f.geometry.coordinates).addTo(map);
-
-    const li = document.createElement('li');
-    li.innerHTML = `${esc(p.name)}<span class="meta">${esc(p.period)}／位置 ${esc(confKey(p.position_confidence))}</span>`;
-    li.onclick = () => {
-      map.flyTo({ center: f.geometry.coordinates, zoom: 13.5, pitch: 65 });
+    el.addEventListener('click', (ev) => { ev.stopPropagation(); selectors[p.id](); });
+    new maplibregl.Marker({ element: el }).setLngLat(labelPoint([f])).addTo(map);
+    addItem('sites', p.id, `${esc(p.name)}<span class="meta">${esc(p.period)}／位置 ${esc(confKey(p.position_confidence))}</span>`, () => {
+      highlight([f], p.name);
       siteDetail(p);
-    };
-    ul.appendChild(li);
+    });
   }
 
-  // 川ごとの記録
-  const rl = document.getElementById('rivers');
+  // 区間の一覧
+  for (const f of reaches.features) {
+    const p = f.properties;
+    addItem('reaches', p.id, `${esc(p.name)}<span class="meta">${esc(p.period)}</span>`, () => {
+      highlight([f], p.name);
+      reachDetail(p);
+    });
+  }
+
+  // 川の一覧（地図で名前の無い川を押したときも同じ出し方にする）
+  const selectRiver = (name, system) => {
+    highlight(riverFeatures(name), name || '名称不明の川');
+    const r = recByName[name];
+    if (r) showRiver(r);
+    else showDetail(name || '名称不明の川', [['地図', '水色で光っている線がこの川'], ['水系', system], ['採取記録', 'なし（未調査）']], ['SRC-011']);
+  };
   for (const r of riverRec.records) {
-    const li = document.createElement('li');
-    li.innerHTML = `${esc(r.name)}<span class="meta">${esc(r.period)}</span>`;
-    li.onclick = () => {
-      const fs = rivers.features.filter((f) => f.properties.name === r.name);
-      if (fs.length) {
-        const b = new maplibregl.LngLatBounds();
-        fs.forEach((f) => f.geometry.coordinates.forEach((c) => b.extend(c)));
-        map.fitBounds(b, { padding: 80, pitch: 60 });
-      }
-      showRiver(r);
-    };
-    rl.appendChild(li);
+    addItem('rivers', `river:${r.name}`, `${esc(r.name)}<span class="meta">${esc(r.period)}</span>`, () => selectRiver(r.name));
   }
 
-  // 郡ごとの記録
-  const dl = document.getElementById('districts');
+  // 地図を押したとき：区間 → 段丘 → 川 の順に拾う
+  map.on('click', (e) => {
+    const hit = map.queryRenderedFeatures(e.point, { layers: ['reaches', 'areas', 'rivers'] });
+    if (!hit.length) return;
+    const h = hit[0];
+    if (h.layer.id !== 'rivers') selectors[h.properties.id]();
+    else if (recByName[h.properties.name]) selectors[`river:${h.properties.name}`]();
+    else selectRiver(h.properties.name, h.properties.system);
+  });
+  for (const id of ['reaches', 'areas', 'rivers']) {
+    map.on('mouseenter', id, () => { map.getCanvas().style.cursor = 'pointer'; });
+    map.on('mouseleave', id, () => { map.getCanvas().style.cursor = ''; });
+  }
+
+  // 郡ごとの記録（地図には置けない）
   for (const r of districts.records) {
-    const li = document.createElement('li');
-    li.innerHTML = `${esc(r.name)}<span class="meta">${esc(r.area)}</span>`;
-    li.onclick = () => showDetail(r.name, [
-      ['範囲', r.area], ['時点', r.period], ['内容', r.summary], ['読み方', r.meaning],
-      ['記録の確かさ', r.record_confidence], ['読み取りの記録', r.note],
-    ], r.sources);
-    dl.appendChild(li);
+    addItem('districts', r.id, `${esc(r.name)}<span class="meta">${esc(r.area)}</span>`, () => {
+      clearHighlight();
+      showDetail(r.name, [
+        ['地図', '郡の境界はまだ入れていないので、地図には出ない'],
+        ['範囲', r.area], ['時点', r.period], ['内容', r.summary], ['読み方', r.meaning],
+        ['記録の確かさ', r.record_confidence], ['読み取りの記録', r.note],
+      ], r.sources);
+    });
   }
 
-  // 未配置
-  const ul2 = document.getElementById('unplaced');
+  // 未配置（地図には置けない）
   for (const r of unplaced.records) {
-    const li = document.createElement('li');
-    li.innerHTML = `${esc(r.name)}<span class="meta">${esc(r.missing)}</span>`;
-    li.onclick = () => showDetail(r.name, [['時期', r.period], ['内容', r.summary], ['置けない理由', r.missing]], r.sources);
-    ul2.appendChild(li);
+    addItem('unplaced', r.id, `${esc(r.name)}<span class="meta">${esc(r.missing)}</span>`, () => {
+      clearHighlight();
+      showDetail(r.name, [['地図', '位置が分からないので、地図には出ない'], ['時期', r.period], ['内容', r.summary], ['置けない理由', r.missing]], r.sources);
+    });
   }
+
+  // ?sel=RC-001 のように URL で最初に選ぶものを指定できる
+  const qSel = new URLSearchParams(location.search).get('sel');
+  if (qSel && selectors[qSel]) selectors[qSel]();
 }).catch((err) => {
   console.error(err);
   showDetail('データを読めませんでした', [['原因', String(err)], ['確認', 'index.html をファイルとして直接開くと読めません。README の手順でローカルサーバーから開いてください。']], []);
@@ -277,13 +352,14 @@ Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unpla
 
 function reachDetail(p) {
   showDetail(p.name, [
+    ['地図', '水色で光っている線がこの区間'],
     ['昔の名前', p.historic_names], ['今の川との対応', p.mapping], ['時期', p.period], ['内容', p.summary],
     ['採取高', p.production], ['区間の分かり方', p.section_known], ['記録の確かさ', p.record_confidence],
   ], p.sources);
 }
 
 function showRiver(r) {
-  showDetail(r.name, [['時期', r.period], ['内容', r.summary], ['たまりやすい場所', r.hint], ['記録の確かさ', r.record_confidence], ['区間', '不明（川全体に色を付けている）']], r.sources);
+  showDetail(r.name, [['地図', '水色で光っている線がこの川'], ['時期', r.period], ['内容', r.summary], ['たまりやすい場所', r.hint], ['記録の確かさ', r.record_confidence], ['区間', '不明（川全体に色を付けている）']], r.sources);
 }
 
 // ---- 操作 ----
