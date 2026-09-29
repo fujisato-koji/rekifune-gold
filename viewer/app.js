@@ -45,9 +45,9 @@ maplibregl.addProtocol('gsidem', async (params, abort) => {
   return { data: await (await c.convertToBlob({ type: 'image/png' })).arrayBuffer() };
 });
 
-const raster = (path, maxzoom) => ({
+const raster = (path, maxzoom, ext = 'png') => ({
   type: 'raster',
-  tiles: [`${GSI}/${path}/{z}/{x}/{y}.${path === 'seamlessphoto' ? 'jpg' : 'png'}`],
+  tiles: [`${GSI}/${path}/{z}/{x}/{y}.${ext}`],
   tileSize: 256,
   maxzoom,
   attribution: '<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank">地理院タイル</a>',
@@ -71,9 +71,13 @@ const map = new maplibregl.Map({
   style: {
     version: 8,
     sources: {
-      photo: raster('seamlessphoto', 18),
+      photo: raster('seamlessphoto', 18, 'jpg'),
       std: raster('std', 18),
       pale: raster('pale', 18),
+      // 昔の空中写真（大樹町で使えるのは 1961〜69年と 1974〜78年。1945〜50年の米軍写真のタイルは無い）
+      old60: raster('ort_old10', 17),
+      old70: raster('gazo1', 17, 'jpg'),
+      relief: raster('hillshademap', 16),
       // 地形用と陰影用で source を分ける（同じ source を共有すると陰影が粗くなる）
       dem: demSource(),
       demShade: demSource(),
@@ -83,6 +87,9 @@ const map = new maplibregl.Map({
       { id: 'photo', type: 'raster', source: 'photo' },
       { id: 'std', type: 'raster', source: 'std', layout: { visibility: 'none' } },
       { id: 'pale', type: 'raster', source: 'pale', layout: { visibility: 'none' } },
+      { id: 'old60', type: 'raster', source: 'old60', layout: { visibility: 'none' } },
+      { id: 'old70', type: 'raster', source: 'old70', layout: { visibility: 'none' } },
+      { id: 'relief', type: 'raster', source: 'relief', layout: { visibility: 'none' } },
       {
         id: 'hillshade', type: 'hillshade', source: 'demShade', layout: { visibility: 'none' },
         paint: { 'hillshade-exaggeration': 0.4, 'hillshade-shadow-color': '#473b24' },
@@ -237,13 +244,21 @@ function showRiver(r) {
 
 // ---- 操作 ----
 
-document.querySelectorAll('#basemap button').forEach((b) => {
+const BASEMAPS = ['photo', 'old70', 'old60', 'relief', 'std', 'pale'];
+
+document.querySelectorAll('.seg button[data-k]').forEach((b) => {
   b.onclick = () => {
-    document.querySelectorAll('#basemap button').forEach((x) => x.classList.toggle('on', x === b));
-    for (const k of ['photo', 'std', 'pale']) map.setLayoutProperty(k, 'visibility', k === b.dataset.k ? 'visible' : 'none');
-    map.setLayoutProperty('hillshade', 'visibility', b.dataset.k === 'photo' ? 'none' : 'visible');
+    document.querySelectorAll('.seg button[data-k]').forEach((x) => x.classList.toggle('on', x === b));
+    for (const k of BASEMAPS) map.setLayoutProperty(k, 'visibility', k === b.dataset.k ? 'visible' : 'none');
+    map.setLayoutProperty('hillshade', 'visibility', ['std', 'pale'].includes(b.dataset.k) ? 'visible' : 'none');
   };
 });
+
+// ?base=old60 のように URL で背景を選べる
+const qBase = new URLSearchParams(location.search).get('base');
+if (BASEMAPS.includes(qBase)) {
+  map.once('style.load', () => document.querySelector(`.seg button[data-k="${qBase}"]`).click());
+}
 
 const exag = document.getElementById('exag');
 exag.oninput = () => {

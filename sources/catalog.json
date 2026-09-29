@@ -117,11 +117,11 @@
     },
     {
       "id": "SRC-013",
-      "title": "地理院タイル（標高 dem_png、航空写真 seamlessphoto、標準地図 std、淡色地図 pale）",
+      "title": "地理院タイル（標高 dem_png、航空写真 seamlessphoto、1961〜69年の写真 ort_old10、1974〜78年の写真 gazo1、陰影起伏図 hillshademap、標準地図 std、淡色地図 pale）",
       "publisher": "国土地理院",
       "url": "https://maps.gsi.go.jp/development/ichiran.html",
       "retrieved": "2026-09-29",
-      "kind": "ビューワの地形と背景",
+      "kind": "ビューワの地形と背景。段丘の切り出し画像は sources/raw/gsi/（tools/mosaic.py で作る）",
       "license": "国土地理院コンテンツ利用規約（出典明記）"
     },
     {
