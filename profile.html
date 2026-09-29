@@ -90,13 +90,23 @@ const niceStep = (range, target) => {
   return [1, 2, 5, 10].map((m) => m * p).find((s) => s >= raw);
 };
 const css = (v) => getComputedStyle(document.body).getPropertyValue(v).trim();
+// ★の輪郭（中心 cx, cy、外側の半径 R）
+const starPath = (cx, cy, R) => {
+  let d = '';
+  for (let i = 0; i < 10; i++) {
+    const a = -Math.PI / 2 + (i * Math.PI) / 5;
+    const r = i % 2 ? R * 0.45 : R;
+    d += `${i ? 'L' : 'M'}${(cx + r * Math.cos(a)).toFixed(1)},${(cy + r * Math.sin(a)).toFixed(1)}`;
+  }
+  return `${d}Z`;
+};
 
 function legend() {
   const L = document.getElementById('legend');
   L.innerHTML = `
     <span><svg width="22" height="10"><line x1="0" y1="5" x2="22" y2="5" stroke="${css('--series-1')}" stroke-width="2"/></svg>谷底の標高</span>
-    <span><svg width="12" height="12"><circle cx="6" cy="6" r="5" fill="${css('--mark-break')}" stroke="#fff" stroke-width="2"/></svg>勾配が急に緩む点</span>
-    <span><svg width="12" height="12"><circle cx="6" cy="6" r="4.5" fill="#fff" stroke="${css('--mark-conf')}" stroke-width="2"/></svg>合流点の下流</span>
+    <span><svg width="16" height="16"><path d="${starPath(8, 8.6, 7.5)}" fill="${css('--mark-break')}" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg>勾配が急に緩む点</span>
+    <span><svg width="16" height="16"><path d="${starPath(8, 8.6, 6.8)}" fill="#fff" stroke="${css('--mark-conf')}" stroke-width="1.8" stroke-linejoin="round"/></svg>合流点の下流</span>
     <span><svg width="18" height="10"><rect width="18" height="10" fill="${css('--band-kamui')}"/></svg>1950年の神威金鉱の区間</span>
     <span><svg width="18" height="10"><rect width="18" height="10" fill="${css('--band-terrace')}"/></svg>未試掘の段丘面の高さ</span>`;
 }
@@ -175,11 +185,13 @@ function chart(river, prof, cands, terrace) {
     const z = prof.elev_m[i];
     if (z == null || z > Y_CAP) continue;
     const brk = p.kind === '勾配が急に緩む点';
-    const c = el('circle', {
-      cx: X(p.dist_km), cy: Y(z), r: brk ? 5.5 : 4.5,
-      fill: brk ? css('--mark-break') : '#fff', stroke: brk ? '#fff' : css('--mark-conf'), 'stroke-width': 2,
+    const cx = X(p.dist_km), cy = Y(z);
+    el('path', {
+      d: starPath(cx, cy, brk ? 9.5 : 7),
+      fill: brk ? css('--mark-break') : '#fff', stroke: brk ? '#fff' : css('--mark-conf'),
+      'stroke-width': brk ? 1.5 : 1.8, 'stroke-linejoin': 'round',
     }, svg);
-    marks.push({ c, p, z });
+    marks.push({ cx, cy, p, z });
   }
 
   const showTip = (px, py, html) => {
@@ -198,7 +210,7 @@ function chart(river, prof, cands, terrace) {
     // 近い候補（12px 以内）を優先
     let best = null, bd = 12;
     for (const mk of marks) {
-      const dd = Math.hypot(+mk.c.getAttribute('cx') - sx, +mk.c.getAttribute('cy') - sy);
+      const dd = Math.hypot(mk.cx - sx, mk.cy - sy);
       if (dd < bd) { bd = dd; best = mk; }
     }
     const px = ev.clientX - fig.getBoundingClientRect().left;

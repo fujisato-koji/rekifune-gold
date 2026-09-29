@@ -157,6 +157,33 @@ const dataReady = Promise.all([
 ]);
 const styleReady = new Promise((ok) => map.once('style.load', ok));
 
+// ---- 候補地点の★の画像 ----
+
+// 白い縁取りの★を描いて、map.addImage に渡せる形で返す（size は CSS ピクセル、2倍で描く）
+function starImage(fill, size) {
+  const k = 2;
+  const s = size * k;
+  const c = document.createElement('canvas');
+  c.width = s;
+  c.height = s;
+  const ctx = c.getContext('2d');
+  const R = s / 2 - 2.5 * k;
+  ctx.beginPath();
+  for (let i = 0; i < 10; i++) {
+    const a = -Math.PI / 2 + (i * Math.PI) / 5;
+    const r = i % 2 ? R * 0.45 : R;
+    ctx.lineTo(s / 2 + r * Math.cos(a), s / 2 + 1 * k + r * Math.sin(a));
+  }
+  ctx.closePath();
+  ctx.lineJoin = 'round';
+  ctx.lineWidth = 3 * k;
+  ctx.strokeStyle = '#ffffff';
+  ctx.stroke();
+  ctx.fillStyle = fill;
+  ctx.fill();
+  return { width: s, height: s, data: new Uint8Array(ctx.getImageData(0, 0, s, s).data.buffer) };
+}
+
 // ---- 選んだものを地図で光らせる ----
 
 const HL_EMPTY = { type: 'FeatureCollection', features: [] };
@@ -273,12 +300,14 @@ Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unpla
 
   // 候補地点（地形から推定）
   map.addSource('candidates', { type: 'geojson', data: candidates });
+  map.addImage('star-break', starImage('#0ca678', 30), { pixelRatio: 2 });
+  map.addImage('star-conf', starImage('#74c0fc', 24), { pixelRatio: 2 });
   map.addLayer({
-    id: 'candidates', type: 'circle', source: 'candidates',
-    paint: {
-      'circle-radius': ['case', ['==', ['get', 'kind'], '勾配が急に緩む点'], 7, 5],
-      'circle-color': ['case', ['==', ['get', 'kind'], '勾配が急に緩む点'], '#0ca678', '#74c0fc'],
-      'circle-stroke-color': '#ffffff', 'circle-stroke-width': 2,
+    id: 'candidates', type: 'symbol', source: 'candidates',
+    layout: {
+      'icon-image': ['case', ['==', ['get', 'kind'], '勾配が急に緩む点'], 'star-break', 'star-conf'],
+      'icon-allow-overlap': true,
+      'icon-ignore-placement': true,
     },
   });
 
@@ -289,7 +318,7 @@ Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unpla
     addItem('candidates', p.id, `${esc(p.name)}<span class="meta">${esc(p.context)}</span>`, () => {
       highlight([f], p.name);
       showDetail(p.name, [
-        ['地図', '水色の丸がこの地点（緑の丸は勾配の変わり目、青の丸は合流点の下流）'],
+        ['地図', '水色の丸で囲んだ★がこの地点（緑の★は勾配の変わり目、青の★は合流点の下流）'],
         ['種類', p.kind], ['川', p.river], ['支流', p.tributary],
         ['上流1 kmの勾配', p.grad_up], ['下流1 kmの勾配', p.grad_down], ['谷底の標高', p.elev_m != null ? `${p.elev_m} m` : null],
         ['近くの記録', p.context],
