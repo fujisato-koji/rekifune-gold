@@ -99,6 +99,8 @@ const map = new maplibregl.Map({
     sky: {},
   },
 });
+// 地図の読み込みの失敗は開発者ツールのコンソールに出す
+map.on('error', (e) => console.error('maplibre error', e.error && e.error.message, e.sourceId || ''));
 map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'bottom-right');
 map.addControl(new maplibregl.ScaleControl({ unit: 'metric' }), 'bottom-left');
 map.addControl(new maplibregl.TerrainControl({ source: 'dem', exaggeration: 1.5 }), 'bottom-right');
@@ -154,7 +156,7 @@ const dataReady = Promise.all([
   load('sources/catalog.json'), load('data/sites.geojson'), load('data/rivers.geojson'),
   load('data/river_records.json'), load('data/unplaced.json'), load('data/district_records.json'),
   load('data/reaches.geojson'), load('data/candidates.geojson'), load('data/cross_reaches.geojson'),
-  load('data/claims.geojson'), load('data/forest_roads.geojson'),
+  load('data/claims.geojson'), load('data/forest_roads.geojson'), load('data/usa/photos.json'),
 ]);
 const styleReady = new Promise((ok) => map.once('style.load', ok));
 
@@ -267,8 +269,29 @@ function addItem(listId, key, html, onSelect) {
   if (key) selectors[key] = () => li.click();
 }
 
-Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unplaced, districts, reaches, candidates, crossReaches, claims, roads]]) => {
+Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unplaced, districts, reaches, candidates, crossReaches, claims, roads, usa]]) => {
   for (const s of cat.sources) catalog[s.id] = s;
+
+  // 1947〜48年の米軍写真（位置合わせした画像を重ねる。背景「1947〜48」で出す）
+  for (const ph of usa.photos) {
+    // image ソースは attribution を持てないので、出典は背景の説明と画面下の footer に書く
+    map.addSource(`usa-${ph.id}`, { type: 'image', url: ph.file, coordinates: ph.coordinates });
+    // 背景の写真のすぐ上（川や記録の層の下）に入れる
+    map.addLayer({ id: `usa-${ph.id}`, type: 'raster', source: `usa-${ph.id}`, layout: { visibility: 'none' }, paint: { 'raster-fade-duration': 0 } }, 'hillshade');
+    USA_LAYERS.push(`usa-${ph.id}`);
+  }
+  document.getElementById('usa-note').innerHTML = '1947〜48年の米軍写真は次の範囲だけ（ほかは今の写真）：' +
+    usa.photos.map((ph) => `<a href="#" data-usa="${esc(ph.id)}">${esc(ph.place)}</a>（${esc(ph.date)}、1:${ph.scale.toLocaleString()}）`).join('、') +
+    '。位置合わせのずれは数十〜150 m 程度。出典：<a href="https://service.gsi.go.jp/map-photos/app/" target="_blank" rel="noopener">国土地理院 地図・空中写真閲覧サービス</a>（米軍撮影の空中写真）。';
+  document.querySelectorAll('#usa-note a[data-usa]').forEach((a) => {
+    a.onclick = (ev) => {
+      ev.preventDefault();
+      const ph = usa.photos.find((x) => x.id === a.dataset.usa);
+      const c = ph.coordinates;
+      map.fitBounds([[c[0][0], c[2][1]], [c[1][0], c[0][1]]], { padding: 40, pitch: 0 });
+    };
+  });
+  if (qBase === 'usa') applyBase('usa');
 
   // 川: 採取記録のある川の名前に印を付ける
   const recByName = Object.fromEntries(riverRec.records.map((r) => [r.name, r]));
@@ -472,13 +495,20 @@ function showRiver(r) {
 // ---- 操作 ----
 
 const BASEMAPS = ['photo', 'old70', 'old60', 'relief', 'std', 'pale'];
+const USA_LAYERS = [];
+
+// 背景を切り替える。'usa' は今の写真の上に 1947〜48年の米軍写真を重ねる
+function applyBase(key) {
+  document.querySelectorAll('.seg button[data-k]').forEach((x) => x.classList.toggle('on', x.dataset.k === key));
+  const base = key === 'usa' ? 'photo' : key;
+  for (const k of BASEMAPS) map.setLayoutProperty(k, 'visibility', k === base ? 'visible' : 'none');
+  for (const id of USA_LAYERS) map.setLayoutProperty(id, 'visibility', key === 'usa' ? 'visible' : 'none');
+  map.setLayoutProperty('hillshade', 'visibility', ['std', 'pale'].includes(key) ? 'visible' : 'none');
+  document.getElementById('usa-note').hidden = key !== 'usa';
+}
 
 document.querySelectorAll('.seg button[data-k]').forEach((b) => {
-  b.onclick = () => {
-    document.querySelectorAll('.seg button[data-k]').forEach((x) => x.classList.toggle('on', x === b));
-    for (const k of BASEMAPS) map.setLayoutProperty(k, 'visibility', k === b.dataset.k ? 'visible' : 'none');
-    map.setLayoutProperty('hillshade', 'visibility', ['std', 'pale'].includes(b.dataset.k) ? 'visible' : 'none');
-  };
+  b.onclick = () => applyBase(b.dataset.k);
 });
 
 // ?at=経度,緯度,ズーム,傾き で最初の視点を選べる
