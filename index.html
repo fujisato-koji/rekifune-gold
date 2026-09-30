@@ -42,8 +42,12 @@
       <ul id="cross"></ul>
     </section>
     <section>
-      <h2>候補地点（地形から推定）</h2>
+      <h2>候補地点（条件の重なりの順）</h2>
       <ul id="candidates"></ul>
+    </section>
+    <section>
+      <h2>昔の鉱区（1991年時点）</h2>
+      <ul id="claims"></ul>
     </section>
     <section>
       <h2>川ごとの記録</h2>
@@ -69,6 +73,9 @@
       <div><span class="star" style="color:#74c0fc">★</span>候補：合流点の下流</div>
       <div><span class="line" style="background:var(--gold)"></span>採取記録のある川</div>
       <div><span class="line" style="background:var(--river)"></span>その他の川（国土数値情報）</div>
+      <div><span class="line" style="background:repeating-linear-gradient(90deg,#c92a2a 0 5px,transparent 5px 8px);height:3px"></span>昔の鉱区（1991年時点）</div>
+      <div><span class="line" style="background:repeating-linear-gradient(90deg,#7a5230 0 6px,transparent 6px 9px);height:2px"></span>林道（国有林、拡大すると出る）</div>
+      <div class="note">★の大きさは重なる条件の数</div>
     </section>
     <footer>
       地形と背景: <a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener">地理院タイル</a>。

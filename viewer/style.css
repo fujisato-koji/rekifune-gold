@@ -65,3 +65,4 @@ html, body { margin: 0; height: 100%; font-family: "Hiragino Sans", "Yu Gothic U
 }
 
 .legend .star { display: inline-block; width: 14px; text-align: center; font-size: 15px; line-height: 1; text-shadow: 0 0 1px #0006; }
+.legend .note { font-size: 11px; color: var(--muted); margin-top: 4px; }

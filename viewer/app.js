@@ -154,6 +154,7 @@ const dataReady = Promise.all([
   load('sources/catalog.json'), load('data/sites.geojson'), load('data/rivers.geojson'),
   load('data/river_records.json'), load('data/unplaced.json'), load('data/district_records.json'),
   load('data/reaches.geojson'), load('data/candidates.geojson'), load('data/cross_reaches.geojson'),
+  load('data/claims.geojson'), load('data/forest_roads.geojson'),
 ]);
 const styleReady = new Promise((ok) => map.once('style.load', ok));
 
@@ -266,7 +267,7 @@ function addItem(listId, key, html, onSelect) {
   if (key) selectors[key] = () => li.click();
 }
 
-Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unplaced, districts, reaches, candidates, crossReaches]]) => {
+Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unplaced, districts, reaches, candidates, crossReaches, claims, roads]]) => {
   for (const s of cat.sources) catalog[s.id] = s;
 
   // 川: 採取記録のある川の名前に印を付ける
@@ -298,6 +299,31 @@ Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unpla
   map.addLayer({ id: 'areas', type: 'fill', source: 'areas', paint: { 'fill-color': '#7b2cbf', 'fill-opacity': 0.25 } });
   map.addLayer({ id: 'areas-line', type: 'line', source: 'areas', paint: { 'line-color': '#7b2cbf', 'line-width': 2, 'line-dasharray': [2, 1] } });
 
+  // 林道（国有林）
+  map.addSource('roads', { type: 'geojson', data: roads });
+  map.addLayer({
+    id: 'roads', type: 'line', source: 'roads', minzoom: 11,
+    paint: { 'line-color': '#7a5230', 'line-width': 1.6, 'line-dasharray': [3, 1.5], 'line-opacity': 0.9 },
+  });
+
+  // 昔の鉱区（国土数値情報、1991年時点）
+  map.addSource('claims', { type: 'geojson', data: claims });
+  map.addLayer({ id: 'claims', type: 'fill', source: 'claims', paint: { 'fill-color': '#c92a2a', 'fill-opacity': 0.15 } });
+  map.addLayer({ id: 'claims-line', type: 'line', source: 'claims', paint: { 'line-color': '#c92a2a', 'line-width': 2, 'line-dasharray': [2, 1] } });
+  for (const f of claims.features) {
+    const p = f.properties;
+    addItem('claims', p.id, `${esc(p.name)}<span class="meta">${esc(p.set_year)}年設定、${esc(p.area_ha)} ha</span>`, () => {
+      highlight([f], p.name);
+      showDetail(p.name, [
+        ['地図', '水色で光っている面がこの鉱区（赤い破線）'],
+        ['種類', p.kind], ['鉱物', p.mineral], ['登録番号', `北海道 ${p.kind}登録第${p.reg_no}号`], ['設定年', `${p.set_year}年`],
+        ['面積', `${p.area_ha} ha`], ['データの調査時点', p.surveyed],
+        ['意味', '1987〜88年に、歴舟中の川の上流で砂鉱（砂金など）の試掘権が設定されていた。この辺りは1980年代にも誰かが試掘を考えた場所で、手付かずとは限らない'],
+        ['確かめ方', '北海道経済産業局に、登録番号を書いて閉鎖鉱業原簿と鉱区図の閲覧を請求できる（保存期間を過ぎて廃棄されていれば見られない）。notes/requests.md'],
+      ], p.sources);
+    });
+  }
+
   // 地層を横切る区間（伊木の条件3「横谷」）
   map.addSource('cross', { type: 'geojson', data: crossReaches });
   map.addLayer({
@@ -327,6 +353,8 @@ Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unpla
     id: 'candidates', type: 'symbol', source: 'candidates',
     layout: {
       'icon-image': ['case', ['==', ['get', 'kind'], '勾配が急に緩む点'], 'star-break', 'star-conf'],
+      'icon-size': ['interpolate', ['linear'], ['get', 'score'], 0, 0.7, 3, 1.35],
+      'symbol-sort-key': ['-', 0, ['get', 'score']],
       'icon-allow-overlap': true,
       'icon-ignore-placement': true,
     },
@@ -334,19 +362,21 @@ Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unpla
 
   setupHighlight();
 
-  for (const f of candidates.features) {
+  const byRank = [...candidates.features].sort((a, b) => (a.properties.rank ?? 999) - (b.properties.rank ?? 999));
+  for (const f of byRank) {
     const p = f.properties;
-    const tag = p.cross_angle >= 60 ? '【横谷】' : '';
-    addItem('candidates', p.id, `${esc(tag + p.name)}<span class="meta">${esc(p.context)}</span>`, () => {
+    addItem('candidates', p.id, `${p.rank}位 ${esc(p.name)}<span class="meta">重なる条件 ${p.score}：${esc((p.score_reasons || []).join('、') || 'なし')}</span>`, () => {
       highlight([f], p.name);
       showDetail(p.name, [
         ['地図', '水色の丸で囲んだ★がこの地点（緑の★は勾配の変わり目、青の★は合流点の下流）'],
         ['種類', p.kind], ['川', p.river], ['支流', p.tributary],
         ['上流1 kmの勾配', p.grad_up], ['下流1 kmの勾配', p.grad_down], ['谷底の標高', p.elev_m != null ? `${p.elev_m} m` : null],
         ['地層と交わる角度', p.cross_angle != null ? `約${p.cross_angle}度（走向 ${p.strike_deg}度、区域 ${p.strike_domain}、確かさ ${p.strike_conf}）${p.cross_angle >= 60 ? '。地層を横切る所（横谷）' : ''}` : '地層の走向の区域の外（段丘や新第三系の上など）'],
+        ['順位', `${p.rank}位（重なる条件 ${p.score}）`], ['重なる条件', (p.score_reasons || []).join('。') || 'なし'],
         ['近くの記録', p.context],
+        ['一番近い林道', p.road_m != null ? `${p.road_name}（約${p.road_m} m）` : null], ['土地の区分', p.land], ['近くの昔の鉱区', p.near_claim],
         ['注意', '地形の一般則から機械的に拾った候補で、砂金があることを示すものではない。川の線は国土数値情報で、実際の流れから数十〜数百 m ずれる。考え方は notes/placer-model.md'],
-      ], ['SRC-011', 'SRC-013']);
+      ], ['SRC-011', 'SRC-013', 'SRC-055', 'SRC-056', 'SRC-054']);
     });
   }
 
@@ -387,14 +417,14 @@ Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unpla
 
   // 地図を押したとき：候補 → 横谷 → 区間 → 段丘 → 川 の順に拾う
   map.on('click', (e) => {
-    const hit = map.queryRenderedFeatures(e.point, { layers: ['candidates', 'cross', 'reaches', 'areas', 'rivers'] });
+    const hit = map.queryRenderedFeatures(e.point, { layers: ['candidates', 'cross', 'reaches', 'claims', 'areas', 'rivers'] });
     if (!hit.length) return;
     const h = hit[0];
     if (h.layer.id !== 'rivers') selectors[h.properties.id]();
     else if (recByName[h.properties.name]) selectors[`river:${h.properties.name}`]();
     else selectRiver(h.properties.name, h.properties.system);
   });
-  for (const id of ['candidates', 'cross', 'reaches', 'areas', 'rivers']) {
+  for (const id of ['candidates', 'cross', 'reaches', 'claims', 'areas', 'rivers']) {
     map.on('mouseenter', id, () => { map.getCanvas().style.cursor = 'pointer'; });
     map.on('mouseleave', id, () => { map.getCanvas().style.cursor = ''; });
   }

@@ -36,17 +36,28 @@ URL に `?base=old60` のように付けると、最初からその背景で開�
 | `data/reach_records.json` | 区間（川筋）の記録。`tools/build_reaches.py` が `data/reaches.geojson` を作る |
 | `data/district_records.json` | 郡単位の記録（明治の許可区域の合計など） |
 | `data/unplaced.json` | 記録はあるが位置が分からないもの |
-| `notes/` | 一次資料の読み取り（原文の抜き書き、コマ番号つき）。文献の一覧と要点は `notes/literature.md`、考察は `notes/placer-model.md` |
+| `notes/` | 現地確認の計画は `notes/field-plan.md`、図書館と役所への依頼は `notes/requests.md`。一次資料の読み取り（原文の抜き書き、コマ番号つき）。文献の一覧と要点は `notes/literature.md`、考察は `notes/placer-model.md` |
 | `data/rivers.geojson` | 川の線（生成物。`tools/build_rivers.py` で作る） |
 | `sources/catalog.json` | 出典の目録。記録の `sources` 欄はここの id を指す |
 | `sources/raw/` | 取得した原本（PDF など）。git 管理外で、このPCにだけある。目録の `local` 欄に場所と sha256 を書く |
 | `tools/find_candidates.py` | 川の縦断面から、勾配が急に緩む点と合流点の下流を候補として拾う（`data/candidates.geojson`、`notes/placer-model.md`） |
 | `tools/cross_strike.py` | 地質図から読んだ走向（`data/strike_domains.json`）と川の向きから、地層を横切る区間を出す（`data/cross_reaches.geojson`）。`tools/find_candidates.py` の後に回す |
+| `tools/build_claims.py` | 国土数値情報の鉱区（1991年時点）を切り出す（`data/claims.geojson`） |
+| `tools/rank_candidates.py` | 候補に、条件の重なり、林道までの距離、土地の区分、近くの昔の鉱区を書いて順位を付ける（`data/forest_roads.geojson` も作る） |
 | `tools/terrace_height.py` | 段丘の比高（今の川底からの高さ）を出す（`data/terrace_heights.json`） |
 | `profile.html` | 川の縦断面と候補地点の図（`data/profiles.json`） |
 | `tools/extract_terrace.py` | 上札内図幅の地質図の画像から尾田面の範囲を切り出す |
 | `tools/mosaic.py` | 地理院タイルを範囲で切り出して 1 枚の画像にする（段丘の観察用） |
 | `tools/build_rivers.py` | taiki-core の国土数値情報 W05 から、歴舟川、当縁川、紋別川、アイホシマ川の水系を切り出す |
+
+## 候補を作り直す順番
+
+```bash
+python tools/find_candidates.py
+python tools/cross_strike.py
+python tools/build_claims.py
+python tools/rank_candidates.py ../taiki-core
+```
 
 ## 記録の書き方
 

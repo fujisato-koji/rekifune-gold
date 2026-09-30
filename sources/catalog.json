@@ -514,6 +514,46 @@
       "kind": "一次資料（歴舟川の源流部の地層の帯の向き）",
       "license": "道総研公開。利用条件未確認",
       "local": "sources/raw/hro/kushiro57_map.jpg（sha256 1189fb35274a4b7ebd99513c92dad7746bc65bc5bd0ba83a6752f10d3d062a5b）"
+    },
+    {
+      "id": "SRC-054",
+      "title": "国土数値情報 鉱区データ C22（昭和59年版、調査時点 1991年3月）",
+      "publisher": "国土交通省",
+      "url": "https://nlftp.mlit.go.jp/ksj/gmlold/datalist/gmlold_KsjTmplt-C22.html",
+      "retrieved": "2026-09-30",
+      "kind": "地理データ（鉱区の位置、試掘権と採掘権の別、鉱物、登録番号、設定年、面積）。今の鉱区ではない",
+      "license": "国土数値情報 利用規約（出典明記）",
+      "local": "sources/raw/ksj/C22-59L-48-01.0a_GML.zip（sha256 f006f658c897b0e43c7f6056d8e3f31cfe0a9db84984efe8ca3b8e64f406a287）"
+    },
+    {
+      "id": "SRC-055",
+      "title": "国土数値情報 国有林野データ A45（2024年）の林道と小班",
+      "publisher": "国土交通省",
+      "url": "https://nlftp.mlit.go.jp/ksj/gml/data/A45/A45-24/A45-24_01_GEOJSON.zip",
+      "retrieved": "2026-09-28",
+      "kind": "地理データ（林道の位置と名前、国有林の範囲）。taiki-core で大樹町に切り出したもの",
+      "license": "国土数値情報 利用規約（出典明記）",
+      "local": "taiki-core geometry/external/A45-2024_taiki.geojson"
+    },
+    {
+      "id": "SRC-056",
+      "title": "森林計画関係資料オープンデータ（令和6年）林小班区画、道有林森林資源情報資料（GIS 用データ）のうち大樹町分",
+      "publisher": "北海道 水産林務部林務局",
+      "url": "https://www.pref.hokkaido.lg.jp/sr/srk/252373.html",
+      "retrieved": "2026-09-29",
+      "kind": "地理データ（民有林と道有林の範囲）。taiki-core DOC-1235、DOC-1236",
+      "license": "北海道オープンデータ利用規約（出典の記載で利用可）",
+      "local": "taiki-core geometry/external/forest_minyu_taiki.geojson、forest_doyu_taiki.geojson"
+    },
+    {
+      "id": "SRC-057",
+      "title": "鉱業原簿・鉱区図の謄本・抄本の交付・閲覧を希望される方は",
+      "publisher": "経済産業省 北海道経済産業局 資源エネルギー環境部 資源・燃料課（2023年5月更新）",
+      "url": "https://www.hkd.meti.go.jp/hoknk/info_kougyo/05.htm",
+      "retrieved": "2026-09-30",
+      "kind": "手続きの案内（郵送で請求、登録番号が不明なら記載不要、保存期間を過ぎた原簿は交付不可、手数料）",
+      "license": "引用のみ",
+      "local": "sources/raw/meti/（meti_05.htm、seikyu.docx、besshi.docx、05_soe.pdf）"
     }
   ]
 }
