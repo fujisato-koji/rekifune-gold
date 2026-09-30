@@ -564,6 +564,25 @@
       "kind": "地球化学データ（全国3,024地点の河川堆積物の元素濃度。試料情報の更新 2024年2月、濃度データの更新 2007年1月）",
       "license": "地質調査総合センター研究成果情報の利用ガイドラインに従う（https://www.gsj.jp/license/index.html）",
       "local": "sources/raw/gsj/geochem/samplejoho.csv（sha256 9fdb58d86ad48eae564291421a0dad2b6f8a4f243d3e89d90016f3c61b0b521c）、noudo.csv（sha256 0dbd2beae356adc45b762d50a9aa06ad556fd3ea004d427e369837bedda05671）"
+    },
+    {
+      "id": "SRC-059",
+      "title": "日本における水銀の規制等の状況（平成20年度 水銀に関する国際的な法的枠組み検討調査委員会 参考資料より抜粋）",
+      "publisher": "環境省",
+      "url": "https://www.env.go.jp/chemi/tmms/lmrm/02/ref02.pdf",
+      "retrieved": "2026-09-30",
+      "kind": "規制値の一覧（底質の暫定除去基準 河川及び湖沼 25 ppm 以上、魚介類の水銀の暫定的規制値 総水銀 0.4 ppm と メチル水銀 0.3 ppm、湖沼産の魚介類にも適用、土壌の含有量基準 15 mg/kg）",
+      "license": "引用のみ",
+      "local": "sources/raw/env/env_mercury_regulation_ref02.pdf（sha256 05c98ecb61f43c14d390afcc4bae8f41ac9cc4c5b7cd9207fcaec5cc8468c7f7）"
+    },
+    {
+      "id": "SRC-060",
+      "title": "生花苗沼 Lake Oikamanai（北海道の湖沼）",
+      "publisher": "北海道立総合研究機構",
+      "url": "https://www.hro.or.jp/lakes_in_hokkaido/n092_OKN.html",
+      "retrieved": "2026-09-30",
+      "kind": "湖沼の概要（湖面積 1.75 km²、最大水深 3.6 m、主な流入河川は生花苗川、ヤマトシジミ漁は年1回、2022年9月の TN と TP）。底質や重金属の記述は無い",
+      "license": "引用のみ"
     }
   ]
 }
