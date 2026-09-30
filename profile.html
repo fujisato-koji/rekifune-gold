@@ -18,6 +18,7 @@
       --mark-conf: #eb6834;
       --band-kamui: rgba(120, 118, 110, 0.12);
       --band-terrace: rgba(42, 120, 214, 0.14);
+      --cross: #1864ab;
     }
     * { box-sizing: border-box; }
     body { margin: 0; background: var(--surface-1); color: var(--text-primary); font-family: "Hiragino Sans", "Yu Gothic UI", "Meiryo", sans-serif; }
@@ -107,11 +108,12 @@ function legend() {
     <span><svg width="22" height="10"><line x1="0" y1="5" x2="22" y2="5" stroke="${css('--series-1')}" stroke-width="2"/></svg>谷底の標高</span>
     <span><svg width="16" height="16"><path d="${starPath(8, 8.6, 7.5)}" fill="${css('--mark-break')}" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg>勾配が急に緩む点</span>
     <span><svg width="16" height="16"><path d="${starPath(8, 8.6, 6.8)}" fill="#fff" stroke="${css('--mark-conf')}" stroke-width="1.8" stroke-linejoin="round"/></svg>合流点の下流</span>
+    <span><svg width="22" height="10"><line x1="0" y1="5" x2="22" y2="5" stroke="${css('--cross')}" stroke-width="4" stroke-dasharray="5 3"/></svg>地層を横切る区間（横谷）</span>
     <span><svg width="18" height="10"><rect width="18" height="10" fill="${css('--band-kamui')}"/></svg>1950年の神威金鉱の区間</span>
     <span><svg width="18" height="10"><rect width="18" height="10" fill="${css('--band-terrace')}"/></svg>未試掘の段丘面の高さ</span>`;
 }
 
-function chart(river, prof, cands, terrace) {
+function chart(river, prof, cands, terrace, crossReaches) {
   const W = 520, H = 290, m = { t: 26, r: 14, b: 34, l: 48 };
   const step = prof.step_km;
   const pts = prof.elev_m.map((z, i) => [i * step, z]).filter(([d, z]) => z != null && d >= river.from && d <= (river.to ?? Infinity));
@@ -167,6 +169,14 @@ function chart(river, prof, cands, terrace) {
   xl.textContent = '河口からの距離（km）';
   const yl = el('text', { x: 4, y: 12, 'font-size': 11, fill: css('--text-secondary') }, svg);
   yl.textContent = '標高（m）';
+
+  // 地層を横切る区間（横軸のすぐ上の破線）
+  for (const f of crossReaches) {
+    const p = f.properties;
+    const a = Math.max(p.from_km, x0), b = Math.min(p.to_km, x1);
+    if (b <= a) continue;
+    el('line', { x1: X(a), x2: X(b), y1: H - m.b - 5, y2: H - m.b - 5, stroke: css('--cross'), 'stroke-width': 4, 'stroke-dasharray': '5 3' }, svg);
+  }
 
   // 縦断面の線
   const d = cut.map(([a, z], i) => `${i ? 'L' : 'M'}${X(a).toFixed(1)},${Y(z).toFixed(1)}`).join('');
@@ -252,19 +262,21 @@ Promise.all([
   fetch('data/profiles.json').then((r) => r.json()),
   fetch('data/candidates.geojson').then((r) => r.json()),
   fetch('data/terrace_heights.json').then((r) => r.json()),
-]).then(([prof, cands, terr]) => {
+  fetch('data/cross_reaches.geojson').then((r) => r.json()),
+]).then(([prof, cands, terr, cross]) => {
   legend();
   const host = document.getElementById('charts');
   for (const r of RIVERS) {
     const cs = cands.features.filter((f) => f.properties.river === r.name);
-    host.appendChild(chart(r, prof.rivers[r.name], cs, r.name === '歴舟川' ? terr.by_river_km : null));
+    const xs = cross.features.filter((f) => f.properties.river === r.name);
+    host.appendChild(chart(r, prof.rivers[r.name], cs, r.name === '歴舟川' ? terr.by_river_km : null, xs));
   }
   const rows = cands.features.map((f) => f.properties).sort((a, b) => a.river.localeCompare(b.river) || a.dist_km - b.dist_km);
   document.getElementById('table').innerHTML =
-    '<tr><th>ID</th><th>川</th><th>種類</th><th class="num">距離 km</th><th class="num">谷底 m</th><th>勾配 上流→下流</th><th>支流</th><th>近くの記録</th></tr>' +
+    '<tr><th>ID</th><th>川</th><th>種類</th><th class="num">距離 km</th><th class="num">谷底 m</th><th>勾配 上流→下流</th><th class="num">地層と交わる角度</th><th>支流</th><th>近くの記録</th></tr>' +
     rows.map((p) => {
       const z = prof.rivers[p.river].elev_m[Math.round(p.dist_km / 0.1)];
-      return `<tr><td><a href="index.html?sel=${p.id}">${p.id}</a></td><td>${p.river}</td><td>${p.kind}</td><td class="num">${p.dist_km}</td><td class="num">${z != null ? Math.round(z) : ''}</td><td>${p.grad_up ? `${p.grad_up}→${p.grad_down}` : ''}</td><td>${p.tributary || ''}</td><td>${p.context}</td></tr>`;
+      return `<tr><td><a href="index.html?sel=${p.id}">${p.id}</a></td><td>${p.river}</td><td>${p.kind}</td><td class="num">${p.dist_km}</td><td class="num">${z != null ? Math.round(z) : ''}</td><td>${p.grad_up ? `${p.grad_up}→${p.grad_down}` : ''}</td><td class="num">${p.cross_angle != null ? `${p.cross_angle}°${p.cross_angle >= 60 ? '（横谷）' : ''}` : ''}</td><td>${p.tributary || ''}</td><td>${p.context}</td></tr>`;
     }).join('');
 });
 </script>

@@ -21,7 +21,11 @@
     "grad_up": "15‰",
     "grad_down": "7‰",
     "ratio": 2.0,
-    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）"
+    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）",
+    "cross_angle": 73,
+    "strike_deg": 163,
+    "strike_domain": "SD-6",
+    "strike_conf": "高"
    }
   },
   {
@@ -43,7 +47,11 @@
     "grad_up": "19‰",
     "grad_down": "9‰",
     "ratio": 2.2,
-    "context": "明治39年に許可（RC-002）"
+    "context": "明治39年に許可（RC-002）",
+    "cross_angle": 51,
+    "strike_deg": 25,
+    "strike_domain": "SD-3",
+    "strike_conf": "高"
    }
   },
   {
@@ -65,7 +73,11 @@
     "grad_up": "22‰",
     "grad_down": "5‰",
     "ratio": 4.1,
-    "context": "明治39年に許可（RC-002）"
+    "context": "明治39年に許可（RC-002）",
+    "cross_angle": 85,
+    "strike_deg": 25,
+    "strike_domain": "SD-3",
+    "strike_conf": "高"
    }
   },
   {
@@ -87,7 +99,11 @@
     "grad_up": "21‰",
     "grad_down": "10‰",
     "ratio": 2.1,
-    "context": "明治39年に許可（RC-002）"
+    "context": "明治39年に許可（RC-002）",
+    "cross_angle": 32,
+    "strike_deg": 160,
+    "strike_domain": "SD-1",
+    "strike_conf": "中"
    }
   },
   {
@@ -109,7 +125,11 @@
     "grad_up": "35‰",
     "grad_down": "17‰",
     "ratio": 2.1,
-    "context": "明治39年に許可（RC-002）"
+    "context": "明治39年に許可（RC-002）",
+    "cross_angle": 63,
+    "strike_deg": 160,
+    "strike_domain": "SD-1",
+    "strike_conf": "中"
    }
   },
   {
@@ -131,7 +151,11 @@
     "grad_up": "15‰",
     "grad_down": "5‰",
     "ratio": 2.9,
-    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる",
+    "cross_angle": 47,
+    "strike_deg": 40,
+    "strike_domain": "SD-7",
+    "strike_conf": "低"
    }
   },
   {
@@ -153,7 +177,11 @@
     "grad_up": "14‰",
     "grad_down": "6‰",
     "ratio": 2.2,
-    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる",
+    "cross_angle": 58,
+    "strike_deg": 25,
+    "strike_domain": "SD-3",
+    "strike_conf": "高"
    }
   },
   {
@@ -175,7 +203,11 @@
     "grad_up": "33‰",
     "grad_down": "10‰",
     "ratio": 3.4,
-    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる",
+    "cross_angle": 55,
+    "strike_deg": 136,
+    "strike_domain": "SD-2",
+    "strike_conf": "中"
    }
   },
   {
@@ -197,7 +229,11 @@
     "grad_up": "36‰",
     "grad_down": "14‰",
     "ratio": 2.5,
-    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる",
+    "cross_angle": 74,
+    "strike_deg": 136,
+    "strike_domain": "SD-2",
+    "strike_conf": "中"
    }
   },
   {
@@ -219,7 +255,11 @@
     "grad_up": "9‰",
     "grad_down": "4‰",
     "ratio": 2.0,
-    "context": "明治のヤオロオマップ（主な採取地、RC-001）。1950年の神威金鉱の区間（峡谷が扇状地に出る所、RC-005）の中"
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）。1950年の神威金鉱の区間（峡谷が扇状地に出る所、RC-005）の中",
+    "cross_angle": 16,
+    "strike_deg": 80,
+    "strike_domain": "SD-4",
+    "strike_conf": "中"
    }
   },
   {
@@ -241,7 +281,11 @@
     "grad_up": "17‰",
     "grad_down": "7‰",
     "ratio": 2.4,
-    "context": "明治のヤオロオマップ（主な採取地、RC-001）。1950年の神威金鉱の区間（峡谷が扇状地に出る所、RC-005）の中"
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）。1950年の神威金鉱の区間（峡谷が扇状地に出る所、RC-005）の中",
+    "cross_angle": 3,
+    "strike_deg": 80,
+    "strike_domain": "SD-4",
+    "strike_conf": "中"
    }
   },
   {
@@ -263,7 +307,11 @@
     "grad_up": "16‰",
     "grad_down": "5‰",
     "ratio": 3.5,
-    "context": "明治のヤオロオマップ（主な採取地、RC-001）。1950年の神威金鉱の区間（峡谷が扇状地に出る所、RC-005）の中"
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）。1950年の神威金鉱の区間（峡谷が扇状地に出る所、RC-005）の中",
+    "cross_angle": 23,
+    "strike_deg": 80,
+    "strike_domain": "SD-4",
+    "strike_conf": "中"
    }
   },
   {
@@ -285,7 +333,11 @@
     "grad_up": "15‰",
     "grad_down": "4‰",
     "ratio": 3.3,
-    "context": "明治のヤオロオマップ（主な採取地、RC-001）"
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）",
+    "cross_angle": 83,
+    "strike_deg": 25,
+    "strike_domain": "SD-3",
+    "strike_conf": "高"
    }
   },
   {
@@ -307,7 +359,11 @@
     "grad_up": "14‰",
     "grad_down": "6‰",
     "ratio": 2.2,
-    "context": "明治のヤオロオマップ（主な採取地、RC-001）"
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）",
+    "cross_angle": 85,
+    "strike_deg": 25,
+    "strike_domain": "SD-3",
+    "strike_conf": "高"
    }
   },
   {
@@ -329,7 +385,11 @@
     "grad_up": "13‰",
     "grad_down": "4‰",
     "ratio": 3.2,
-    "context": "明治のヤオロオマップ（主な採取地、RC-001）"
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）",
+    "cross_angle": 60,
+    "strike_deg": 160,
+    "strike_domain": "SD-1",
+    "strike_conf": "中"
    }
   },
   {
@@ -386,7 +446,11 @@
     "river": "歴舟中の川",
     "dist_km": 30.3,
     "tributary": "支六の沢川",
-    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる",
+    "cross_angle": 81,
+    "strike_deg": 136,
+    "strike_domain": "SD-2",
+    "strike_conf": "中"
    }
   },
   {
@@ -405,7 +469,11 @@
     "river": "歴舟中の川",
     "dist_km": 31.2,
     "tributary": "支七の沢川",
-    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる",
+    "cross_angle": 90,
+    "strike_deg": 136,
+    "strike_domain": "SD-2",
+    "strike_conf": "中"
    }
   },
   {
@@ -424,7 +492,11 @@
     "river": "歴舟川",
     "dist_km": 33.7,
     "tributary": "パンケ目方川",
-    "context": "明治のヤオロオマップ（主な採取地、RC-001）。1950年の神威金鉱の区間（峡谷が扇状地に出る所、RC-005）の中"
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）。1950年の神威金鉱の区間（峡谷が扇状地に出る所、RC-005）の中",
+    "cross_angle": 10,
+    "strike_deg": 80,
+    "strike_domain": "SD-4",
+    "strike_conf": "中"
    }
   },
   {
@@ -443,7 +515,11 @@
     "river": "歴舟川",
     "dist_km": 53.4,
     "tributary": "マオロマップ川",
-    "context": "明治のヤオロオマップ（主な採取地、RC-001）"
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）",
+    "cross_angle": 56,
+    "strike_deg": 160,
+    "strike_domain": "SD-1",
+    "strike_conf": "中"
    }
   },
   {
@@ -462,7 +538,11 @@
     "river": "歴舟川",
     "dist_km": 60.4,
     "tributary": "ヤオロマップ左沢",
-    "context": "明治のヤオロオマップ（主な採取地、RC-001）"
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）",
+    "cross_angle": 29,
+    "strike_deg": 160,
+    "strike_domain": "SD-1",
+    "strike_conf": "中"
    }
   },
   {
@@ -481,7 +561,11 @@
     "river": "ヌビナイ川",
     "dist_km": 20.7,
     "tributary": "クマの沢川",
-    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）"
+    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）",
+    "cross_angle": 78,
+    "strike_deg": 163,
+    "strike_domain": "SD-6",
+    "strike_conf": "高"
    }
   },
   {
@@ -500,7 +584,11 @@
     "river": "歴舟川",
     "dist_km": 36.3,
     "tributary": "ポンヤオロヌップ川",
-    "context": "明治のヤオロオマップ（主な採取地、RC-001）。1950年の神威金鉱の区間（峡谷が扇状地に出る所、RC-005）の中"
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）。1950年の神威金鉱の区間（峡谷が扇状地に出る所、RC-005）の中",
+    "cross_angle": 19,
+    "strike_deg": 38,
+    "strike_domain": "SD-5",
+    "strike_conf": "中"
    }
   },
   {
@@ -519,7 +607,11 @@
     "river": "ポンヤオロヌップ川",
     "dist_km": 10.4,
     "tributary": "ペンケヤオロヌップ川",
-    "context": "明治39年に許可（RC-002）"
+    "context": "明治39年に許可（RC-002）",
+    "cross_angle": 60,
+    "strike_deg": 160,
+    "strike_domain": "SD-1",
+    "strike_conf": "中"
    }
   },
   {
@@ -557,7 +649,11 @@
     "river": "歴舟中の川",
     "dist_km": 17.8,
     "tributary": "支二の沢川",
-    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる",
+    "cross_angle": 4,
+    "strike_deg": 40,
+    "strike_domain": "SD-7",
+    "strike_conf": "低"
    }
   },
   {
@@ -576,7 +672,11 @@
     "river": "歴舟中の川",
     "dist_km": 21.5,
     "tributary": "支四の沢川",
-    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる",
+    "cross_angle": 17,
+    "strike_deg": 40,
+    "strike_domain": "SD-7",
+    "strike_conf": "低"
    }
   },
   {
@@ -595,7 +695,11 @@
     "river": "歴舟中の川",
     "dist_km": 22.4,
     "tributary": "支五の沢川",
-    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる",
+    "cross_angle": 59,
+    "strike_deg": 40,
+    "strike_domain": "SD-7",
+    "strike_conf": "低"
    }
   },
   {
@@ -614,7 +718,11 @@
     "river": "ヌビナイ川",
     "dist_km": 19.1,
     "tributary": "ポン十の沢川",
-    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）"
+    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）",
+    "cross_angle": 66,
+    "strike_deg": 163,
+    "strike_domain": "SD-6",
+    "strike_conf": "高"
    }
   },
   {
@@ -633,7 +741,11 @@
     "river": "歴舟川",
     "dist_km": 34.7,
     "tributary": "ペンケ目方川",
-    "context": "明治のヤオロオマップ（主な採取地、RC-001）。1950年の神威金鉱の区間（峡谷が扇状地に出る所、RC-005）の中"
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）。1950年の神威金鉱の区間（峡谷が扇状地に出る所、RC-005）の中",
+    "cross_angle": 18,
+    "strike_deg": 80,
+    "strike_domain": "SD-4",
+    "strike_conf": "中"
    }
   },
   {
@@ -652,7 +764,11 @@
     "river": "歴舟川",
     "dist_km": 45.8,
     "tributary": "一の沢川",
-    "context": "明治のヤオロオマップ（主な採取地、RC-001）"
+    "context": "明治のヤオロオマップ（主な採取地、RC-001）",
+    "cross_angle": 45,
+    "strike_deg": 160,
+    "strike_domain": "SD-1",
+    "strike_conf": "中"
    }
   },
   {
@@ -709,7 +825,11 @@
     "river": "ヌビナイ川",
     "dist_km": 10.7,
     "tributary": "ポン三の沢川",
-    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）。砂金の沢（GS-010）から 1.5 km 以内"
+    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）。砂金の沢（GS-010）から 1.5 km 以内",
+    "cross_angle": 5,
+    "strike_deg": 40,
+    "strike_domain": "SD-7",
+    "strike_conf": "低"
    }
   },
   {
@@ -728,7 +848,11 @@
     "river": "ヌビナイ川",
     "dist_km": 12.6,
     "tributary": "ポン四の沢川",
-    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）"
+    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）",
+    "cross_angle": 73,
+    "strike_deg": 163,
+    "strike_domain": "SD-6",
+    "strike_conf": "高"
    }
   },
   {
@@ -747,7 +871,11 @@
     "river": "ヌビナイ川",
     "dist_km": 14.3,
     "tributary": "ポン五の沢川",
-    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）"
+    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）",
+    "cross_angle": 89,
+    "strike_deg": 163,
+    "strike_domain": "SD-6",
+    "strike_conf": "高"
    }
   },
   {
@@ -766,7 +894,11 @@
     "river": "ヌビナイ川",
     "dist_km": 15.7,
     "tributary": "ポン六の沢川",
-    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）"
+    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）",
+    "cross_angle": 79,
+    "strike_deg": 163,
+    "strike_domain": "SD-6",
+    "strike_conf": "高"
    }
   },
   {
@@ -785,7 +917,11 @@
     "river": "ヌビナイ川",
     "dist_km": 15.8,
     "tributary": "ポン七の沢川",
-    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）"
+    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）",
+    "cross_angle": 82,
+    "strike_deg": 163,
+    "strike_domain": "SD-6",
+    "strike_conf": "高"
    }
   },
   {
@@ -804,7 +940,11 @@
     "river": "ヌビナイ川",
     "dist_km": 17.0,
     "tributary": "ポン八の沢川",
-    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）"
+    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）",
+    "cross_angle": 87,
+    "strike_deg": 163,
+    "strike_domain": "SD-6",
+    "strike_conf": "高"
    }
   },
   {
@@ -823,7 +963,11 @@
     "river": "ヌビナイ川",
     "dist_km": 17.8,
     "tributary": "ポン九の沢川",
-    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）"
+    "context": "明治44年に「未タ着手セラレサルカ如シ」（RC-004）",
+    "cross_angle": 54,
+    "strike_deg": 163,
+    "strike_domain": "SD-6",
+    "strike_conf": "高"
    }
   },
   {
@@ -842,7 +986,11 @@
     "river": "ポンヤオロヌップ川",
     "dist_km": 2.4,
     "tributary": "パンヤオロマップ川",
-    "context": "明治39年に許可（RC-002）"
+    "context": "明治39年に許可（RC-002）",
+    "cross_angle": 58,
+    "strike_deg": 25,
+    "strike_domain": "SD-3",
+    "strike_conf": "高"
    }
   },
   {
@@ -880,7 +1028,11 @@
     "river": "歴舟中の川",
     "dist_km": 16.7,
     "tributary": "支一の沢川",
-    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる",
+    "cross_angle": 47,
+    "strike_deg": 40,
+    "strike_domain": "SD-7",
+    "strike_conf": "低"
    }
   },
   {
@@ -899,7 +1051,11 @@
     "river": "歴舟中の川",
     "dist_km": 17.1,
     "tributary": "吉田の沢川",
-    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる",
+    "cross_angle": 62,
+    "strike_deg": 25,
+    "strike_domain": "SD-3",
+    "strike_conf": "高"
    }
   },
   {
@@ -918,7 +1074,11 @@
     "river": "歴舟中の川",
     "dist_km": 19.6,
     "tributary": "支三の沢川",
-    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる"
+    "context": "明治のルーツルオマップ（主な採取地、RC-003）。1950年の報告が中川流域を有望とみる",
+    "cross_angle": 7,
+    "strike_deg": 40,
+    "strike_domain": "SD-7",
+    "strike_conf": "低"
    }
   }
  ]

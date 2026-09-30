@@ -161,7 +161,7 @@
       "retrieved": "2026-09-29",
       "kind": "一次資料（地質調査。p.1、p.44、p.47「砂金」）",
       "license": "道総研公開。利用条件未確認",
-      "local": "sources/raw/hro/kushiro62.pdf"
+      "local": "sources/raw/hro/kushiro62.pdf。地質図の画像は sources/raw/hro/kushiro62_map.jpg（https://www.hro.or.jp/upload/29688/kushiro62.jpg、sha256 0960fb1da59ab9f46f3cf9e8b0eee35de6e639861e364707561f20a0e030da19）"
     },
     {
       "id": "SRC-018",
@@ -494,6 +494,26 @@
       "kind": "砂金の微量化学と包有物による源の判定",
       "license": "オープンアクセス",
       "local": "sources/raw/lit/chapman_leake_styles2002_goldbull.pdf（sha256 41eaa0ecbff0d1c4adf3bfcb2d06966a7723e2adec47610ee384914192da0dcd）"
+    },
+    {
+      "id": "SRC-052",
+      "title": "5万分の1地質図幅「上豊似」（釧路-第63号）の地質図の画像",
+      "publisher": "北海道立地下資源調査所、1975年（道総研の公開画像）",
+      "url": "https://www.hro.or.jp/upload/29690/kushiro63.jpg",
+      "retrieved": "2026-09-30",
+      "kind": "一次資料（中の川層群とヤオロマップ川層の走向、ヌビナイ川断層、パンケポロナイ川とペンケポロナイ川の地名）",
+      "license": "道総研公開。利用条件未確認",
+      "local": "sources/raw/hro/kushiro63_map.jpg（sha256 9fcc62d171d61ec8fb3234dec1da936e50868fd16b319a52cee91b5bc3bfc152）"
+    },
+    {
+      "id": "SRC-053",
+      "title": "5万分の1地質図幅「札内川上流」（釧路-第57号）の地質図の画像",
+      "publisher": "北海道開発庁、1963年（道総研の公開画像）",
+      "url": "https://www.hro.or.jp/upload/29682/kushiro57.jpg",
+      "retrieved": "2026-09-30",
+      "kind": "一次資料（歴舟川の源流部の地層の帯の向き）",
+      "license": "道総研公開。利用条件未確認",
+      "local": "sources/raw/hro/kushiro57_map.jpg（sha256 1189fb35274a4b7ebd99513c92dad7746bc65bc5bd0ba83a6752f10d3d062a5b）"
     }
   ]
 }

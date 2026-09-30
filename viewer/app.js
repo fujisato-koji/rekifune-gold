@@ -153,7 +153,7 @@ async function load(path) {
 const dataReady = Promise.all([
   load('sources/catalog.json'), load('data/sites.geojson'), load('data/rivers.geojson'),
   load('data/river_records.json'), load('data/unplaced.json'), load('data/district_records.json'),
-  load('data/reaches.geojson'), load('data/candidates.geojson'),
+  load('data/reaches.geojson'), load('data/candidates.geojson'), load('data/cross_reaches.geojson'),
 ]);
 const styleReady = new Promise((ok) => map.once('style.load', ok));
 
@@ -266,7 +266,7 @@ function addItem(listId, key, html, onSelect) {
   if (key) selectors[key] = () => li.click();
 }
 
-Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unplaced, districts, reaches, candidates]]) => {
+Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unplaced, districts, reaches, candidates, crossReaches]]) => {
   for (const s of cat.sources) catalog[s.id] = s;
 
   // 川: 採取記録のある川の名前に印を付ける
@@ -298,6 +298,27 @@ Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unpla
   map.addLayer({ id: 'areas', type: 'fill', source: 'areas', paint: { 'fill-color': '#7b2cbf', 'fill-opacity': 0.25 } });
   map.addLayer({ id: 'areas-line', type: 'line', source: 'areas', paint: { 'line-color': '#7b2cbf', 'line-width': 2, 'line-dasharray': [2, 1] } });
 
+  // 地層を横切る区間（伊木の条件3「横谷」）
+  map.addSource('cross', { type: 'geojson', data: crossReaches });
+  map.addLayer({
+    id: 'cross', type: 'line', source: 'cross',
+    layout: { 'line-join': 'round', 'line-cap': 'round' },
+    paint: { 'line-color': '#1864ab', 'line-width': 4, 'line-dasharray': [1.5, 1.2], 'line-opacity': 0.95 },
+  });
+  for (const f of crossReaches.features) {
+    const p = f.properties;
+    addItem('cross', p.id, `${esc(p.name)}<span class="meta">交わる角度 約${p.cross_median}度／確かさ ${esc(p.confidence)}</span>`, () => {
+      highlight([f], p.name);
+      showDetail(p.name, [
+        ['地図', '水色で光っている線がこの区間（青い破線）'],
+        ['意味', '川が地層の走向とほぼ直角に交わる区間。伊木（1913）は、川が粘板岩の地層を横切る所（横谷）では層の凹凸が天然のせきになり、砂金がたまりやすいとした'],
+        ['交わる角度（中央値）', `約${p.cross_median}度`], ['河口からの距離', `${p.from_km}〜${p.to_km} km`],
+        ['走向の区域', p.domains], ['確かさ', p.confidence],
+        ['注意', '走向は5万分の1地質図から区域ごとに読み取った値で、区域の中の細かい変化は入っていない。川の線は国土数値情報で、実際の流れから数百 m ずれる。data/strike_domains.json、tools/cross_strike.py'],
+      ], ['SRC-045', 'SRC-039', 'SRC-052', 'SRC-053', 'SRC-017', 'SRC-011']);
+    });
+  }
+
   // 候補地点（地形から推定）
   map.addSource('candidates', { type: 'geojson', data: candidates });
   map.addImage('star-break', starImage('#0ca678', 30), { pixelRatio: 2 });
@@ -315,12 +336,14 @@ Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unpla
 
   for (const f of candidates.features) {
     const p = f.properties;
-    addItem('candidates', p.id, `${esc(p.name)}<span class="meta">${esc(p.context)}</span>`, () => {
+    const tag = p.cross_angle >= 60 ? '【横谷】' : '';
+    addItem('candidates', p.id, `${esc(tag + p.name)}<span class="meta">${esc(p.context)}</span>`, () => {
       highlight([f], p.name);
       showDetail(p.name, [
         ['地図', '水色の丸で囲んだ★がこの地点（緑の★は勾配の変わり目、青の★は合流点の下流）'],
         ['種類', p.kind], ['川', p.river], ['支流', p.tributary],
         ['上流1 kmの勾配', p.grad_up], ['下流1 kmの勾配', p.grad_down], ['谷底の標高', p.elev_m != null ? `${p.elev_m} m` : null],
+        ['地層と交わる角度', p.cross_angle != null ? `約${p.cross_angle}度（走向 ${p.strike_deg}度、区域 ${p.strike_domain}、確かさ ${p.strike_conf}）${p.cross_angle >= 60 ? '。地層を横切る所（横谷）' : ''}` : '地層の走向の区域の外（段丘や新第三系の上など）'],
         ['近くの記録', p.context],
         ['注意', '地形の一般則から機械的に拾った候補で、砂金があることを示すものではない。川の線は国土数値情報で、実際の流れから数十〜数百 m ずれる。考え方は notes/placer-model.md'],
       ], ['SRC-011', 'SRC-013']);
@@ -362,16 +385,16 @@ Promise.all([dataReady, styleReady]).then(([[cat, sites, rivers, riverRec, unpla
     addItem('rivers', `river:${r.name}`, `${esc(r.name)}<span class="meta">${esc(r.period)}</span>`, () => selectRiver(r.name));
   }
 
-  // 地図を押したとき：候補 → 区間 → 段丘 → 川 の順に拾う
+  // 地図を押したとき：候補 → 横谷 → 区間 → 段丘 → 川 の順に拾う
   map.on('click', (e) => {
-    const hit = map.queryRenderedFeatures(e.point, { layers: ['candidates', 'reaches', 'areas', 'rivers'] });
+    const hit = map.queryRenderedFeatures(e.point, { layers: ['candidates', 'cross', 'reaches', 'areas', 'rivers'] });
     if (!hit.length) return;
     const h = hit[0];
     if (h.layer.id !== 'rivers') selectors[h.properties.id]();
     else if (recByName[h.properties.name]) selectors[`river:${h.properties.name}`]();
     else selectRiver(h.properties.name, h.properties.system);
   });
-  for (const id of ['candidates', 'reaches', 'areas', 'rivers']) {
+  for (const id of ['candidates', 'cross', 'reaches', 'areas', 'rivers']) {
     map.on('mouseenter', id, () => { map.getCanvas().style.cursor = 'pointer'; });
     map.on('mouseleave', id, () => { map.getCanvas().style.cursor = ''; });
   }
