@@ -554,6 +554,16 @@
       "kind": "手続きの案内（郵送で請求、登録番号が不明なら記載不要、保存期間を過ぎた原簿は交付不可、手数料）",
       "license": "引用のみ",
       "local": "sources/raw/meti/（meti_05.htm、seikyu.docx、besshi.docx、05_soe.pdf）"
+    },
+    {
+      "id": "SRC-058",
+      "title": "日本の地球化学図（河川堆積物）試料情報と53元素の濃度データ（全国）",
+      "publisher": "産業技術総合研究所 地質調査総合センター",
+      "url": "https://gbank.gsj.jp/geochemmap/data/download.htm",
+      "retrieved": "2026-09-30",
+      "kind": "地球化学データ（全国3,024地点の河川堆積物の元素濃度。試料情報の更新 2024年2月、濃度データの更新 2007年1月）",
+      "license": "地質調査総合センター研究成果情報の利用ガイドラインに従う（https://www.gsj.jp/license/index.html）",
+      "local": "sources/raw/gsj/geochem/samplejoho.csv（sha256 9fdb58d86ad48eae564291421a0dad2b6f8a4f243d3e89d90016f3c61b0b521c）、noudo.csv（sha256 0dbd2beae356adc45b762d50a9aa06ad556fd3ea004d427e369837bedda05671）"
     }
   ]
 }
